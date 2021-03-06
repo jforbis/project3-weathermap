@@ -9,10 +9,6 @@ body {
     background: #000000;
 }
 
-p {
-    color: white
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -89,7 +85,7 @@ hr {
     height: 550px;
     padding: 20px;
     margin: 0;
-    background: black;
+    /* background: black; */
     background-image: url("../../images/intro_image2.jpg");
     background-attachment: fixed;
     background-position: bottom center;

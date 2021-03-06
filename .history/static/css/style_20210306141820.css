@@ -9,10 +9,6 @@ body {
     background: #000000;
 }
 
-p {
-    color: white
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
