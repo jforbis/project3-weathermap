@@ -15,7 +15,7 @@ p {
 
 .title {
     background-color: black;
-    color: white;
+    color: white
 }
 .dropdown {
     position: relative;
@@ -62,11 +62,7 @@ hr {
     vertical-align: text-top
 }
 
-.card-text {
-    color: black
-}
 .second_card {
-    background-color: white;
     margin-top: -140px;
     margin-left: 40px
 }

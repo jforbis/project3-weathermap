@@ -43,7 +43,7 @@
   <!-- First div is a container for the title and scraper button -->
   <div class="container">
     <div class="hero text-center">
-      <h1><span class="title">Interactive Weather & Precipitation Mapper</span></h1>
+      <h1><span style = "color: white, background-color: Black">Interactive Weather & Precipitation Mapper</span></h1>
       <p><span style="background-color: #000000">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
       <p><a class="btn btn-dark btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
@@ -54,38 +54,21 @@
         <tr>
             <td>
                 <div class="card" style="width: 40rem;">
-                    <!-- Update Image Here If We Even Want One -->
+                    <img src="Resources/assets/images/Fig1.png" class="card-img-top" alt="...">
                     <div class="card-body">
                     <h5 class="card-title">Project Purpose:</h5>
                     <p class="card-text">
-                        Weather, climate, and census data is constantly under use by many different enterprises 
-                        for a multitude of strategic uses, from disaster prediction to construction 
-                        resource allocation and more. Our model allows a user to value several metrics 
-                        at once: average rainfall, average temperatures, and relational census data by 
-                        utilizing an interactive website which allows the user to choose a state and see 
-                        its capital, high temp, low temp, and precipitation. </br></br>
-                        The interactivity comes with leveraging leaflet to create cloropleth maps that 
-                        show each metric and it's gradient from low to high. To accomplish this we did 
-                        the following:</br>
-                        <ul>
-                            <li class="card-text">
-                                Data acquisition via <a href="https://www.usclimatedata.com/">UsClimateData.com</a> 
-                                and Census data via the Python data library <i>PyPI</i>
-                            <li class="card-text">
-                                The data was then organized within a Jupyter Notebook file using Pandas to 
-                                read the html from each specific states url, creating one master dictionary 
-                                to hold our data for the next step.
-                            <li class="card-text">
-                                Utilized MongoDB to create the database to store our data.
-                            <li class="card-text">
-                                Using HTML/JavaScript, we translated the data into a visual,interactive format 
-                                for consumption using Leaflet execute dynamic and interactive cloropleth maps.
-                        </ul>
-                    <h5 class="card-title">Additional Info:</h5>
-                    <p class="card-text">
-                        Extra info here about the project.
+                        The purpose of this project was to analyze how
+                        weather changes as you get closer to the equator. To accomplish this
+                        analysis, we first pulled data from the Open/WeatherMap API to assemble
+                        a dataset on over 500 cities.</br>
+                        </br>
+                        After assembling the dataset, we used Matplotlib to plto various aspects
+                        of the weather vs. latitude. Factors we looked at included:  temperature,
+                        cloudiness, wind speed, and humitity. This side provides the source data
+                        and visualizations created as part of the analysis, as well as explanations
+                        and descriptions of any trends and correlations witnessed.
                     </p>
-                    <!--Todo: add url to data page-->
                     <a href="data.html" class="btn btn-primary">All Data</a>
                     </div>
                 </div>
@@ -95,7 +78,6 @@
                         <div class="card-body">
                             <table>
                                 <tr>
-                                    <!--Todo: add images of each map and specify their specific routes so they are clickable-->
                                 <th colspan=2>VISUALIZATIONS</th>
                                 </tr>
                                 <tr>
