@@ -1,0 +1,152 @@
+<!DOCTYPE html> test
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<title>Mission to Mars</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--link to style sheet-->
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<!--Top Nav Bar-->
+<nav class="navbar-expand-lg navbar-light bg-light nav-color navbar nav">
+    <a class="navbar-brand" href="index.html"> Summary Page</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <div class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Plots</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="visualizations/maxtemp.html">Max Temperature</a>
+                        <a class="dropdown-item" href="visualizations/humidity.html">Humidity</a>
+                        <a class="dropdown-item" href="visualizations/cloudiness.html">Cloudiness</a>
+                        <a class="dropdown-item" href="visualizations/windspeed.html">Wind Speed</a>
+                    </ul>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="comparisons.html">Comparison </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="data.html">Data </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+  <!-- First div is a container for the title and scraper button -->
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1><b>Mission to Mars</b></h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">**What do we want to do here?**</a></p>
+    </div>
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Latest Mars News<br/>          
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>{{mars.Title}}</strong><br/>
+              {{mars.Article}}
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Mars Facts
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Fact Table</strong><br/> 
+              <table border="1" class="dataframe">
+                <thead>
+                  <tr style="text-align: right;">
+                    <th></th>
+                    <th>Value</th>
+                  </tr>
+                  <tr>
+                    <th>Metric</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Equatorial Diameter:</th>
+                    <td>6,792 km</td>
+                  </tr>
+                  <tr>
+                    <th>Polar Diameter:</th>
+                    <td>6,752 km</td>
+                  </tr>
+                  <tr>
+                    <th>Mass:</th>
+                    <td>6.39 × 10^23 kg (0.11 Earths)</td>
+                  </tr>
+                  <tr>
+                    <th>Moons:</th>
+                    <td>2 (Phobos &amp; Deimos)</td>
+                  </tr>
+                  <tr>
+                    <th>Orbit Distance:</th>
+                    <td>227,943,824 km (1.38 AU)</td>
+                  </tr>
+                  <tr>
+                    <th>Orbit Period:</th>
+                    <td>687 days (1.9 years)</td>
+                  </tr>
+                  <tr>
+                    <th>Surface Temperature:</th>
+                    <td>-87 to -5 °C</td>
+                  </tr>
+                  <tr>
+                    <th>First Record:</th>
+                    <td>2nd millennium BC</td>
+                  </tr>
+                  <tr>
+                    <th>Recorded By:</th>
+                    <td>Egyptian astronomers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Mars Hemispheres
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Hemisphere Image & Urls</strong><br/> 
+              {% for hemisphere in mars.hemisphere_image_urls %}
+                <div class="col-md-6">
+                    <div class="thumbnail">
+                    <img src="{{hemisphere_image_urls.lg_url}}"><br/>
+                    <div class="caption">
+                        <h3><b>{{hemisphere_image_urls.title}}</b></h3>
+                    </div>
+                    </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
