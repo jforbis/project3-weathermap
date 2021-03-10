@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Web Visualization (Latitude)</title>
+<!--Bootstrap style sheet-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--link to style sheet-->
+<link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<!--Top Nav Bar-->
+<nav class="navbar-expand-lg navbar-light bg-light nav-color navbar nav">
+    <a class="navbar-brand" href="index.html">Project Summary</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <div class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Plots</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Route#1">Route 1</a>
+                        <a class="dropdown-item" href="Route#2">Route 2</a>
+                        <a class="dropdown-item" href="Route#3">Route 3</a>
+                        <a class="dropdown-item" href="Route#4">Route 4</a>
+                    </ul>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="comparisons.html">Comparison </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="data.html">Data </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  <!-- First div is a container for the title and scraper button -->
+  <div class="container">
+    <div class="hero text-center">
+      <h1><span class="title">Interactive Weather & Precipitation Mapper</span></h1>
+      <p><span style="background-color: #000000">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
+      <p><a class="btn btn-dark btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+  </div>
+<body>
+    <hr>
+    <table>
+        <tr>
+            <td>
+                <div class="card" style="width: 40rem;">
+                    <!-- Update Image Here If We Even Want One -->
+                    <img src="Resources/assets/images/Fig1.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title">Project Purpose:</h5>
+                    <p class="card-text">
+                        Weather, climate, and census data is constantly under use by many different enterprises 
+                        for a multitude of strategic uses, from disaster prediction to construction 
+                        resource allocation and more. Our model allows a user to value several metrics 
+                        at once: average rainfall, average temperatures, and relational census data by 
+                        utilizing an interactive website which allows the user to choose a state and see 
+                        its capital, high temp, low temp, and precipitation. </br></br>
+                        The interactivity comes with leveraging leaflet to create cloropleth maps that 
+                        show each metric and it's gradient from low to high. To accomplish this we did 
+                        the following:</br>
+                            <li class="card-text">Data acquisition via <a href="https://www.usclimatedata.com/">UsClimateData.com</a> and Census data
+                                via the Python data library <i>PyPI</i>
+                            </li>
+                            <li class="card-text">Second</li>
+                            <li class="card-text">Third</li>
+                        </br>
+                    <h5 class="card-title">Additional Info:</h5>
+                    <p class="card-text">
+                        Extra info here about the project.
+                    </p>
+                    <!--Todo: add url to data page-->
+                    <a href="data.html" class="btn btn-primary">All Data</a>
+                    </div>
+                </div>
+            </td>
+            <td style="vertical-align:bottom">
+                <div class="second_card" style="width: 40rem;">
+                        <div class="card-body">
+                            <table>
+                                <tr>
+                                    <!--Todo: add images of each map and specify their specific routes so they are clickable-->
+                                <th colspan=2>VISUALIZATIONS</th>
+                                </tr>
+                                <tr>
+                                <td>Max Temp
+                                    <a href="visualizations/maxtemp.html">
+                                        <img src="Resources/assets/images/Fig1.png" class="card-img-top" alt="...">
+                                    </a>
+                                </td>
+                                <td>Humidity
+                                    <a href="visualizations/humidity.html">
+                                        <img src="Resources/assets/images/Fig2.png" class="card-img-top" alt="...">
+                                    </a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Cloudiness
+                                        <a href="visualizations/cloudiness.html">
+                                            <img src="Resources/assets/images/Fig3.png" class="card-img-top" alt="...">
+                                    </a>
+                                    </td>
+                                    <td>Wind Speed
+                                        <a href="visualizations/windspeed.html">
+                                            <img src="Resources/assets/images/Fig3.png" class="card-img-top" alt="...">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
+                                        </br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>

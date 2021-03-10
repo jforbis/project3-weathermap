@@ -9,17 +9,6 @@ body {
     background: #000000;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-}
-
-a:hover {
-    color:white; 
-    text-decoration:none; 
-    cursor:pointer;  
-}
-
 .button {
     padding: .5rem 1rem;
     font-size: 1.25rem;
@@ -34,16 +23,7 @@ a:hover {
     vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;
-    transition: color .15s ease-in-out,
-        background-color .15s ease-in-out,
-        border-color .15s ease-in-out,
-        box-shadow .15s ease-in-out
-}
-
-.button:hover{
-    color: #fff;
-    background-color: #23272b;
-    border-color: #1d2124;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
 }
 .title {
     background-color: black;

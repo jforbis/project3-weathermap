@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Interactive Weather & Precipitation Mapper</title>
+<title>Web Visualization (Latitude)</title>
 <!--Bootstrap style sheet-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!--link to style sheet-->
@@ -22,32 +22,32 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">Interactive Maps</a>
+                        data-bs-toggle="dropdown" aria-expanded="false">Plots</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="Route#1">High Temps</a>
-                        <a class="dropdown-item" href="Route#2">Low Temps</a>
-                        <a class="dropdown-item" href="Route#3">Precipitation</a>
-                        <a class="dropdown-item" href="Route#4">Population</a>
+                        <a class="dropdown-item" href="Route#1">Route 1</a>
+                        <a class="dropdown-item" href="Route#2">Route 2</a>
+                        <a class="dropdown-item" href="Route#3">Route 3</a>
+                        <a class="dropdown-item" href="Route#4">Route 4</a>
                     </ul>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="comparisons.html">Map Comparisons</a>
+                    <a class="nav-link" href="comparisons.html">Comparison </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="data.html">All Data</a>
+                    <a class="nav-link" href="data.html">Data </a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<!-- First div is a container for the title and scraper button -->
-<div class="container">
+  <!-- First div is a container for the title and scraper button -->
+  <div class="container">
     <div class="hero text-center">
-        <h1><span class="title">Interactive Weather & Precipitation Mapper</span></h1>
-        <p><span class="title2">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
-        <p><a class="button" href="/scrape" role="button">Scrape New Data</a></p>
+      <h1><span class="title">Interactive Weather & Precipitation Mapper</span></h1>
+      <p><span style="background-color: #000000">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
+      <p><a class="btn btn-dark btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-</div>
+  </div>
 <body>
     <hr>
     <div class="d-flex p-2">
@@ -102,24 +102,24 @@
                                     <tr>
                                         <td>High Temps
                                             <a href="visualizations/maxtemp.html">
-                                                <img src="images/choropleth-example.png" class="card-img-top" alt="...">
+                                                <img src="Resources/assets/images/Fig1.png" class="card-img-top" alt="...">
                                             </a>
                                         </td>
                                         <td>Low Temps
                                             <a href="visualizations/humidity.html">
-                                                <img src="images/choropleth-example.png" class="card-img-top" alt="...">
+                                                <img src="Resources/assets/images/Fig2.png" class="card-img-top" alt="...">
                                             </a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Precipitation
                                             <a href="visualizations/cloudiness.html">
-                                                <img src="images/choropleth-example.png" class="card-img-top" alt="...">
+                                                <img src="Resources/assets/images/Fig3.png" class="card-img-top" alt="...">
                                         </a>
                                         </td>
                                         <td>Population
                                             <a href="visualizations/windspeed.html">
-                                                <img src="images/choropleth-example.png" class="card-img-top" alt="...">
+                                                <img src="Resources/assets/images/Fig3.png" class="card-img-top" alt="...">
                                             </a>
                                         </td>
                                     </tr>

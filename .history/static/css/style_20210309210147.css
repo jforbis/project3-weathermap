@@ -9,58 +9,14 @@ body {
     background: #000000;
 }
 
-a {
-    color: white;
-    text-decoration: none;
+p {
+    color: white
 }
 
-a:hover {
-    color:white; 
-    text-decoration:none; 
-    cursor:pointer;  
-}
-
-.button {
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: .3rem;
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    transition: color .15s ease-in-out,
-        background-color .15s ease-in-out,
-        border-color .15s ease-in-out,
-        box-shadow .15s ease-in-out
-}
-
-.button:hover{
-    color: #fff;
-    background-color: #23272b;
-    border-color: #1d2124;
-}
 .title {
     background-color: black;
     color: white;
-    width: 300px;
-    border: 15px #3d3c3c;
-    border-style: outset
 }
-
-.title2 {
-    background-color: black;
-    color: white;
-    width: 300px;
-    border: 8px #3d3c3c;
-    border-style: outset
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -110,8 +66,6 @@ hr {
     color: black
 }
 .second_card {
-    color: #9f9b9b;
-    background-color: white;
     margin-top: -140px;
     margin-left: 40px
 }
@@ -147,8 +101,4 @@ hr {
     background-attachment: fixed;
     background-position: bottom center;
     background-size: cover;
-}
-
-p {
-    color: white
 }
