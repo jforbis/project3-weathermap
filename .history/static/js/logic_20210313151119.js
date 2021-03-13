@@ -17,53 +17,8 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // ToDo: add our own geojson data file
 // Load in geojson data
-let geoData = [{'Alabama': {
-  'average high': {
-    'apr': 77.0,
-    'aug': 92.0,
-    'dec': 60.0,
-    'feb': 62.0,
-    'jan': 57.0,
-    'jul': 92.0,
-    'jun': 90.0,
-    'mar': 70.0,
-    'may': 84.0,
-    'nov': 69.0,
-    'oct': 78.0,
-    'sep': 87.0
-  },
-  'average low': {
-    'apr': 52.0,
-    'aug': 71.0,
-    'dec': 37.0,
-    'feb': 39.0,
-    'jan': 36.0,
-    'jul': 71.0,
-    'jun': 68.0,
-    'mar': 45.0,
-    'may': 61.0,
-    'nov': 44.0,
-    'oct': 53.0,
-    'sep': 65.0
-  },
-  'average rain': {
-    'apr': 4.02,
-    'aug': 3.96,
-    'dec': 4.86,
-    'feb': 5.28,
-    'jan': 4.65,
-    'jul': 5.24,
-    'jun': 4.07,
-    'mar': 5.95,
-    'may': 3.54,
-    'nov': 4.61,
-    'oct': 2.92,
-    'sep': 3.97
-  },
-  'capital': 'montgomery'
-  }
-}];
-console.log(geoData)
+// let geoData = {weather[0]};
+
 let geojson;
 
 // Grab data with d3
@@ -72,7 +27,7 @@ d3.json(geoData, function(data) {
 
   // Create a new choropleth layer
   geojson = L.choropleth(data, {
-    // Define what property in the features to use
+    // Define what  property in the features to use
     valueProperty: "Black_Pct",
 
     // Set color scale
