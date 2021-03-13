@@ -17,7 +17,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // ToDo: add our own geojson data file
 // Load in geojson data
-let geoData = {weather[0]};
+let geoData = "static/data/Median_Household_Income_2016.geojson";
 
 let geojson;
 

@@ -1,0 +1,152 @@
+/* Styling for HTML elements */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    line-height: 150%;
+    color: rgb(0, 0, 0);
+    background: #000000;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration:none; 
+    cursor:pointer;  
+}
+
+.button {
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: color .15s ease-in-out,
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out
+}
+
+.button:hover{
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+}
+.title {
+    background-color: black;
+    color: white;
+    width: 300px;
+    border: 15px #3d3c3c;
+    border-style: outset
+}
+
+.title2 {
+    background-color: black;
+    color: white;
+    width: 300px;
+    border: 8px #3d3c3c;
+    border-style: outset
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+h1 {
+    padding: 25px;
+    margin: 10px;
+    color: black
+}
+
+h3 {
+    margin-left: 35px;
+    color: white;
+    font-size: 16px
+}
+
+hr {
+    height: 2px;
+    background-color: white
+}
+
+.card {
+    color: #9f9b9b;
+    font-size: 14px;
+    margin-left: 40px;
+    margin-top: top;
+    border-color: #9f9b9b;
+    vertical-align: text-top
+}
+
+.card-text {
+    color: black
+}
+.second_card {
+    color: #9f9b9b;
+    background-color: white;
+    margin-top: -140px;
+    margin-left: 40px
+}
+
+.card-img-top {
+    width: 90%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 18px
+}
+
+.top_row {
+    position: sticky;
+    top: 0;
+    background-color: #353A3F;
+}
+
+.navbar-expand-lg {
+    position: sticky;
+    top: 0;
+    z-index: 1071;
+}
+
+.hero {
+    position: relative;
+    height: 550px;
+    padding: 20px;
+    margin: 0;
+    background: blue;
+    background-image: url("../images/intro_image2.jpg");
+    background-attachment: fixed;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+p {
+    color: white
+}

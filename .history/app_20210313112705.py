@@ -34,11 +34,6 @@ def scrape():
     print("finish")
     return redirect("/")
 
-@app.route("/hightemp")
-def highmap():
-    return render_template("hightemp.html", weather=data)
-
-
 if __name__ == "__main__":
     app.run(debug=True)
 
