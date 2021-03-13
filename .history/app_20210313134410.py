@@ -9,11 +9,11 @@ client = pymongo.MongoClient(conn)
 db = client.weather
 col = db.data
 
-weather_data = scrape_weather.scrape()
-from pprint import pprint
-pprint(weather_data['alabama'])
-col.remove()
-col.insert(weather_data)
+# weather_data = scrape_weather.scrape()
+# from pprint import pprint
+# pprint(weather_data['alabama'])
+# col.remove()
+# col.insert(weather_data)
 
 @app.route("/")
 def home():
