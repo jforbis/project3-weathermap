@@ -60,10 +60,8 @@ let geoData = [{'Alabama': {
     'oct': 2.92,
     'sep': 3.97
   },
-  'capital': 'montgomery'
-  }
-}];
-console.log(geoData)
+  'capital': 'montgomery'};
+
 let geojson;
 
 // Grab data with d3
@@ -72,7 +70,7 @@ d3.json(geoData, function(data) {
 
   // Create a new choropleth layer
   geojson = L.choropleth(data, {
-    // Define what property in the features to use
+    // Define what  property in the features to use
     valueProperty: "Black_Pct",
 
     // Set color scale
