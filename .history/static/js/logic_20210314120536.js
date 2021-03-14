@@ -1,36 +1,32 @@
 // This will be the base file for our choropleth maps
 // Creating map object
-// let myMap = L.map("map", {
-//   center: [39.0997, -94.5786], //KC, MO//
-//   zoom: 8
-// });
-
-// // Adding tile layer
-// L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-//   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-//   tileSize: 512,
-//   maxZoom: 18,
-//   zoomOffset: -1,
-//   id: "mapbox/streets-v11",
-//   accessToken: API_KEY
-// }).addTo(myMap);
-
-// let geojsonLayer = new L.GeoJSON.AJAX("masterdata.geojson");       
-// geojsonLayer.addTo(map);
-
-jQuery.getjson("../../resources/data/masterdata.geojson", function(data) {
-  L.geoJson(data).addTo(myMap);
-  console.log(data);
+let myMap = L.map("map", {
+  center: [39.0997, -94.5786], //KC, MO//
+  zoom: 8
 });
 
+// Adding tile layer
+L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+  tileSize: 512,
+  maxZoom: 18,
+  zoomOffset: -1,
+  id: "mapbox/streets-v11",
+  accessToken: API_KEY
+}).addTo(myMap);
+
+// ToDo: add our own geojson data file
+// Load in geojson data
+let geoData = "../../resources/data/masterdata.geojson"
+console.log(geoData)
 let geojson;
 
 // Grab data with d3
 d3.json(geoData, function(data) {
-  console.log(geoData);
+  console.log(data);
 
   // Create a new choropleth layer
-  geojson = L.choropleth(geoData, {
+  geojson = L.choropleth(data, {
     // Define what property in the features to use
     valueProperty: "Black_Pct",
 

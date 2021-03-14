@@ -7,11 +7,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-<script src="../../resources/data/masterdata.geojson" type="text/javascript"></script>
-<script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
-
-
-<!-- <style>
+<script src="masterdata.geojson" type="text/javascript"></script>
+<style>
     html, body, #map {
         height: 100%;
     }
@@ -19,7 +16,7 @@
         padding: 0;
         margin: 0;
     }
-</style> -->
+</style>
 
 <!--Bootstrap style sheet-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -150,37 +147,25 @@
     </div>
 
 <!-- The div that holds our map -->
-<div id="map"> 
-
-</div>
-<script src="http://d3js.org/d3.v2.min.js?2.9.3"></script>
-<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-<script type="text/javascript"> 
-// This will be the base file for our choropleth maps
-// Creating map object
-let myMap = L.map("map", {
-  center: [39.0997, -94.5786], //KC, MO//
-  zoom: 8
-});
-
-// Adding tile layer
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-  attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-  tileSize: 512,
-  maxZoom: 18,
-  zoomOffset: -1,
-  id: "mapbox/streets-v11",
-  accessToken: "pk.eyJ1IjoiZm9yYmlzam9obiIsImEiOiJja2xsamtoM3cwNjNkMnZudXZ1MmtyejE1In0.5wByJHSXUgdbBB3SaxZMuA"
-}).addTo(myMap);
-
-let masterData = new L.GeoJSON.AJAX("masterdata.geojson");       
-masterData.addTo(myMap);
-
-// L.geoJson(masterdata).addTo(myMap);
-</script>
+<div id="map" style="height: 100%"</div>
+    <script src="http://d3js.org/d3.v2.min.js?2.9.3"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script type="text/javascript"> 
+    let map = L.map('map').setView([38.57, -94.71], 4);
+    L.tileLayer('http://{s}.tile.cloudmade.com/9067860284bc491e92d2342cc51d47d9/998/256/{z}/{x}/{y}.png', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Imagery © <a href="http://cloudmade.com">CloudMade</a>'}).addTo(map);
+    let featureStyle = {
+        "color": "#ff7800",
+        "weight": 5, 
+        "opacity": 0.2
+    };
+    L.geoJson(masterdata).addTo(map);
+    </script>
+    var geojsonLayer = new L.GeoJSON.AJAX("masterdata.geojson");       
+    geojsonLayer.addTo(map);
 
 
 <!-- Leaflet JS -->
+<script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>

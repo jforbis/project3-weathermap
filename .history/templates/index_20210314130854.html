@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-<script src="../../resources/data/masterdata.geojson" type="text/javascript"></script>
+<script src="masterdata.geojson" type="text/javascript"></script>
 <script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
 
 
@@ -174,7 +174,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
 
 let masterData = new L.GeoJSON.AJAX("masterdata.geojson");       
-masterData.addTo(myMap);
+geojsonLayer.addTo(myMap);
 
 // L.geoJson(masterdata).addTo(myMap);
 </script>

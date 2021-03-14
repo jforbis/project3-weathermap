@@ -7,11 +7,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-<script src="../../resources/data/masterdata.geojson" type="text/javascript"></script>
+<script src="masterdata.geojson" type="text/javascript"></script>
 <script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
 
-
-<!-- <style>
+<style>
     html, body, #map {
         height: 100%;
     }
@@ -19,7 +18,7 @@
         padding: 0;
         margin: 0;
     }
-</style> -->
+</style>
 
 <!--Bootstrap style sheet-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -173,10 +172,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: "pk.eyJ1IjoiZm9yYmlzam9obiIsImEiOiJja2xsamtoM3cwNjNkMnZudXZ1MmtyejE1In0.5wByJHSXUgdbBB3SaxZMuA"
 }).addTo(myMap);
 
-let masterData = new L.GeoJSON.AJAX("masterdata.geojson");       
-masterData.addTo(myMap);
-
-// L.geoJson(masterdata).addTo(myMap);
+L.geoJson(masterdata).addTo(myMap);
 </script>
 
 
