@@ -1,22 +1,20 @@
 from flask import Flask, render_template, redirect
-import pymongo 
+from flask_pymongo import PyMongo
 import scrape_weather
 
 # Instantiate Flask
 app = Flask(__name__)
 
 # Utilize PyMongo to establish a connect to MongoDB
-mongo = pymongo(app, uri="mongodb://localhost:27017/weather")
+mongo = PyMongo(app, uri="mongodb://localhost:27017/weather")
 
-# Store the database in a varaible for reference
-col = mongo.data
 
 # Default scrape and CRUD operations
 weather_data = scrape_weather.scrape()
 from pprint import pprint
 pprint(weather_data['alabama'])
-col.remove()
-col.insert(weather_data)
+
+
 
 # Route to render index.html using the data from Mongo
 @app.route("/")
