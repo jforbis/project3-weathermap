@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Interactive Weather & Precipitation Mapper Data</title>
+<!--Bootstrap style sheet-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--Our style sheet-->
+<!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}"> -->
+</head>
+<!--Top Nav Bar-->
+<nav class="navbar-expand-lg navbar-light bg-light nav-color navbar nav" 
+style="position: sticky;
+top: 0;
+z-index: 0;">
+    <a class="navbar-brand" href="/">Project Summary</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <div class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="/state">GeoJson Data</a>
+              </li>
+              <li class="nav-item active">
+                    <a class="nav-link" href="/data">All Data</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body>
+    <table border="1" class="table-dark" style="position: sticky; top:0; z-index:1">
+      <thead style="position: sticky; top:0; z-index:1">
+        <tr style="text-align: right;">
+          <th>State</th>
+          <th>Capital</th>
+          <th>Population</th>
+          <th>Density</th>
+          <th>Median Age</th>
+          <th>Household Income</th>
+          <th>Per Capita Income</th>
+          <th>Poverty Count</th>
+          <th>Poverty Rate %</th>
+          <th>Avg. High</th>
+          <th>Avg. Low</th>
+          <th>Avg. Rain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alabama</td>
+          <td>montgomery</td>
+          <td>48,762</td>
+          <td>94.65</td>
+          <td>39</td>
+          <td>536</td>
+          <td>27,928</td>
+          <td>795,989</td>
+          <td>16.32%</td>
+          <td>{'jan': 57.0, 'feb': 62.0, 'mar': 70.0, 'apr': 77.0, 'may': 84.0, 'jun': 90.0, 'jul': 92.0, 'aug': 92.0, 'sep': 87.0, 'oct': 78.0, 'nov': 69.0, 'dec': 60.0}</td>
+          <td>{'jan': 36.0, 'feb': 39.0, 'mar': 45.0, 'apr': 52.0, 'may': 61.0, 'jun': 68.0, 'jul': 71.0, 'aug': 71.0, 'sep': 65.0, 'oct': 53.0, 'nov': 44.0, 'dec': 37.0}</td>
+          <td>{'jan': 4.65, 'feb': 5.28, 'mar': 5.95, 'apr': 4.02, 'may': 3.54, 'jun': 4.07, 'jul': 5.24, 'aug': 3.96, 'sep': 3.97, 'oct': 2.92, 'nov': 4.61, 'dec': 4.86}</td>
+        </tr>
+        <tr>
+          <td>Alaska</td>
+          <td>juneau</td>
+          <td>7,368</td>
+          <td>1.26</td>
+          <td>34</td>
+          <td>776</td>
+          <td>36,787</td>
+          <td>76,933</td>
+          <td>10.44%</td>
+          <td>{'jan': 33.0, 'feb': 35.0, 'mar': 40.0, 'apr': 48.0, 'may': 57.0, 'jun': 62.0, 'jul': 64.0, 'aug': 63.0, 'sep': 56.0, 'oct': 47.0, 'nov': 38.0, 'dec': 34.0}</td>
+          <td>{'jan': 24.0, 'feb': 25.0, 'mar': 28.0, 'apr': 33.0, 'may': 41.0, 'jun': 47.0, 'jul': 50.0, 'aug': 49.0, 'sep': 44.0, 'oct': 38.0, 'nov': 29.0, 'dec': 26.0}</td>
+          <td>{'jan': 5.35, 'feb': 4.13, 'mar': 3.78, 'apr': 2.94, 'may': 3.4, 'jun': 3.24, 'jul': 4.6, 'aug': 5.73, 'sep': 8.64, 'oct': 8.63, 'nov': 5.99, 'dec': 5.84}</td>
+        </tr>
+        <tr>
+          <td>Arizona</td>
+          <td>phoenix</td>
+          <td>299</td>
+          <td>57.05</td>
+          <td>37</td>
+          <td>58945</td>
+          <td>694</td>
+          <td>43,764</td>
+          <td>14.80%</td>
+          <td>{'jan': 67.0, 'feb': 71.0, 'mar': 77.0, 'apr': 85.0, 'may': 95.0, 'jun': 104.0, 'jul': 106.0, 'aug': 104.0, 'sep': 100.0, 'oct': 89.0, 'nov': 76.0, 'dec': 66.0}</td>
+          <td>{'jan': 46.0, 'feb': 49.0, 'mar': 53.0, 'apr': 60.0, 'may': 69.0, 'jun': 78.0, 'jul': 83.0, 'aug': 83.0, 'sep': 77.0, 'oct': 65.0, 'nov': 53.0, 'dec': 45.0}</td>
+          <td>{'jan': 4.0, 'feb': 4.0, 'mar': 3.0, 'apr': 2.0, 'may': 1.0, 'jun': 1.0, 'jul': 4.0, 'aug': 5.0, 'sep': 3.0, 'oct': 3.0, 'nov': 2.0, 'dec': 4.0}</td>
+        </tr>
+        <tr>
+          <td>Arkansas</td>
+          <td>little_rock</td>
+          <td>29,993</td>
+          <td>56.43</td>
+          <td>38</td>
+          <td>47597</td>
+          <td>26,577</td>
+          <td>4,962</td>
+          <td>16.55%</td>
+          <td>{'jan': 51.0, 'feb': 55.0, 'mar': 64.0, 'apr': 73.0, 'may': 81.0, 'jun': 89.0, 'jul': 92.0, 'aug': 93.0, 'sep': 86.0, 'oct': 75.0, 'nov': 63.0, 'dec': 52.0}</td>
+          <td>{'jan': 32.0, 'feb': 35.0, 'mar': 43.0, 'apr': 51.0, 'may': 61.0, 'jun': 69.0, 'jul': 73.0, 'aug': 72.0, 'sep': 65.0, 'oct': 53.0, 'nov': 42.0, 'dec': 34.0}</td>
+          <td>{'jan': 8.0, 'feb': 9.0, 'mar': 9.0, 'apr': 11.0, 'may': 11.0, 'jun': 8.0, 'jul': 8.0, 'aug': 6.0, 'sep': 7.0, 'oct': 8.0, 'nov': 8.0, 'dec': 9.0}</td>
+        </tr>
+        <tr>
+          <td>California</td>
+          <td>sacramento</td>
+          <td>39,283,497</td>
+          <td>241.70</td>
+          <td>36</td>
+          <td>75235</td>
+          <td>36,955</td>
+          <td>5,149,742</td>
+          <td>13.11%</td>
+          <td>{'jan': 54.0, 'feb': 60.0, 'mar': 65.0, 'apr': 71.0, 'may': 80.0, 'jun': 87.0, 'jul': 92.0, 'aug': 91.0, 'sep': 87.0, 'oct': 78.0, 'nov': 64.0, 'dec': 54.0}</td>
+          <td>{'jan': 39.0, 'feb': 41.0, 'mar': 44.0, 'apr': 46.0, 'may': 51.0, 'jun': 56.0, 'jul': 58.0, 'aug': 58.0, 'sep': 56.0, 'oct': 50.0, 'nov': 43.0, 'dec': 38.0}</td>
+          <td>{'jan': 3.64, 'feb': 3.47, 'mar': 2.75, 'apr': 1.15, 'may': 0.68, 'jun': 0.21, 'jul': 0.0, 'aug': 0.05, 'sep': 0.29, 'oct': 0.95, 'nov': 2.08, 'dec': 3.25}</td>
+        </tr>
+        <tr>
+          <td>Colorado</td>
+          <td>denver</td>
+          <td>56,349</td>
+          <td>49.33</td>
+          <td>36</td>
+          <td>72331</td>
+          <td>38,226</td>
+          <td>565,873</td>
+          <td>10.09%</td>
+          <td>{'jan': 45.0, 'feb': 46.0, 'mar': 54.0, 'apr': 61.0, 'may': 72.0, 'jun': 82.0, 'jul': 90.0, 'aug': 88.0, 'sep': 79.0, 'oct': 66.0, 'nov': 52.0, 'dec': 45.0}</td>
+          <td>{'jan': 18.0, 'feb': 19.0, 'mar': 27.0, 'apr': 34.0, 'may': 43.0, 'jun': 52.0, 'jul': 59.0, 'aug': 57.0, 'sep': 48.0, 'oct': 37.0, 'nov': 25.0, 'dec': 18.0}</td>
+          <td>{'jan': 9999.0, 'feb': 9999.0, 'mar': 9999.0, 'apr': 9999.0, 'may': 9999.0, 'jun': 9999.0, 'jul': 9999.0, 'aug': 9999.0, 'sep': 9999.0, 'oct': 9999.0, 'nov': 9999.0, 'dec': 9999.0}</td>
+        </tr>
+        <tr>
+          <td>Connecticut</td>
+          <td>hartford</td>
+          <td>35,774</td>
+          <td>739.10</td>
+          <td>41</td>
+          <td>78444</td>
+          <td>44,496</td>
+          <td>344,146</td>
+          <td>9.63%</td>
+          <td>{'jan': 35.0, 'feb': 38.0, 'mar': 47.0, 'apr': 58.0, 'may': 70.0, 'jun': 79.0, 'jul': 84.0, 'aug': 82.0, 'sep': 74.0, 'oct': 63.0, 'nov': 51.0, 'dec': 40.0}</td>
+          <td>{'jan': 16.0, 'feb': 19.0, 'mar': 27.0, 'apr': 38.0, 'may': 48.0, 'jun': 57.0, 'jul': 63.0, 'aug': 61.0, 'sep': 51.0, 'oct': 40.0, 'nov': 32.0, 'dec': 22.0}</td>
+          <td>{'jan': 3.66, 'feb': 2.64, 'mar': 3.62, 'apr': 3.82, 'may': 3.98, 'jun': 3.82, 'jul': 3.94, 'aug': 3.82, 'sep': 3.82, 'oct': 3.9, 'nov': 3.78, 'dec': 3.43}</td>
+        </tr>
+        <tr>
+          <td>Delaware</td>
+          <td>dover</td>
+          <td>957,248</td>
+          <td>464.30</td>
+          <td>40</td>
+          <td>68287</td>
+          <td>354</td>
+          <td>90</td>
+          <td>11.43%</td>
+          <td>{'jan': 43.0, 'feb': 47.0, 'mar': 55.0, 'apr': 66.0, 'may': 75.0, 'jun': 83.0, 'jul': 87.0, 'aug': 85.0, 'sep': 79.0, 'oct': 69.0, 'nov': 58.0, 'dec': 47.0}</td>
+          <td>{'jan': 27.0, 'feb': 29.0, 'mar': 36.0, 'apr': 44.0, 'may': 54.0, 'jun': 63.0, 'jul': 68.0, 'aug': 67.0, 'sep': 60.0, 'oct': 49.0, 'nov': 40.0, 'dec': 31.0}</td>
+          <td>{'jan': 3.41, 'feb': 3.07, 'mar': 4.31, 'apr': 3.88, 'may': 4.25, 'jun': 4.0, 'jul': 4.09, 'aug': 4.36, 'sep': 4.13, 'oct': 3.42, 'nov': 3.48, 'dec': 3.65}</td>
+        </tr>
+        <tr>
+          <td>Florida</td>
+          <td>honolulu</td>
+          <td>14,294</td>
+          <td>353.40</td>
+          <td>39</td>
+          <td>81275</td>
+          <td>35,567</td>
+          <td>1,649</td>
+          <td>9.19%</td>
+          <td>{'jan': 80.0, 'feb': 80.0, 'mar': 81.0, 'apr': 83.0, 'may': 85.0, 'jun': 87.0, 'jul': 88.0, 'aug': 89.0, 'sep': 89.0, 'oct': 87.0, 'nov': 84.0, 'dec': 81.0}</td>
+          <td>{'jan': 66.0, 'feb': 66.0, 'mar': 68.0, 'apr': 69.0, 'may': 71.0, 'jun': 73.0, 'jul': 74.0, 'aug': 75.0, 'sep': 74.0, 'oct': 73.0, 'nov': 71.0, 'dec': 68.0}</td>
+          <td>{'jan': 14.0, 'feb': 11.0, 'mar': 13.0, 'apr': 12.0, 'may': 11.0, 'jun': 12.0, 'jul': 14.0, 'aug': 13.0, 'sep': 13.0, 'oct': 13.0, 'nov': 13.0, 'dec': 15.0}</td>
+        </tr>
+        <tr>
+          <td>Georgia</td>
+          <td>tallahassee</td>
+          <td>1,636</td>
+          <td>169.50</td>
+          <td>42</td>
+          <td>556</td>
+          <td>31,619</td>
+          <td>28,487</td>
+          <td>13.73%</td>
+          <td>{'jan': 64.0, 'feb': 67.0, 'mar': 74.0, 'apr': 80.0, 'may': 87.0, 'jun': 91.0, 'jul': 92.0, 'aug': 92.0, 'sep': 88.0, 'oct': 81.0, 'nov': 73.0, 'dec': 65.0}</td>
+          <td>{'jan': 39.0, 'feb': 42.0, 'mar': 47.0, 'apr': 52.0, 'may': 62.0, 'jun': 69.0, 'jul': 72.0, 'aug': 72.0, 'sep': 68.0, 'oct': 57.0, 'nov': 47.0, 'dec': 41.0}</td>
+          <td>{'jan': 4.34, 'feb': 4.85, 'mar': 5.94, 'apr': 3.06, 'may': 3.47, 'jun': 7.73, 'jul': 7.17, 'aug': 7.35, 'sep': 4.69, 'oct': 3.23, 'nov': 3.5, 'dec': 3.9}</td>
+        </tr>
+        <tr>
+          <td>Hawaii</td>
+          <td>atlanta</td>
+          <td>3,847</td>
+          <td>214.10</td>
+          <td>36</td>
+          <td>580</td>
+          <td>367</td>
+          <td>1,528,558</td>
+          <td>14.69%</td>
+          <td>{'jan': 61.0, 'feb': 52.0, 'mar': 72.0, 'apr': 82.0, 'may': 86.0, 'jun': 87.0, 'jul': 86.0, 'aug': 79.0, 'sep': 71.0, 'oct': 54.0, 'nov': 62.0, 'dec': 51.0}</td>
+          <td>{'jan': 43.0, 'feb': 37.0, 'mar': 54.0, 'apr': 64.0, 'may': 69.0, 'jun': 70.0, 'jul': 67.0, 'aug': 60.0, 'sep': 51.0, 'oct': 37.0, 'nov': 43.0, 'dec': 35.0}</td>
+          <td>{'jan': 8.0, 'feb': 11.0, 'mar': 7.0, 'apr': 7.0, 'may': 10.0, 'jun': 12.0, 'jul': 10.0, 'aug': 9.0, 'sep': 10.0, 'oct': 10.0, 'nov': 12.0, 'dec': 11.0}</td>
+        </tr>
+        <tr>
+          <td>Idaho</td>
+          <td>boise</td>
+          <td>17,177</td>
+          <td>19.15</td>
+          <td>36</td>
+          <td>55785</td>
+          <td>279</td>
+          <td>221,256</td>
+          <td>12.88%</td>
+          <td>{'jan': 38.0, 'feb': 45.0, 'mar': 55.0, 'apr': 62.0, 'may': 72.0, 'jun': 81.0, 'jul': 91.0, 'aug': 90.0, 'sep': 79.0, 'oct': 65.0, 'nov': 48.0, 'dec': 38.0}</td>
+          <td>{'jan': 25.0, 'feb': 28.0, 'mar': 34.0, 'apr': 39.0, 'may': 47.0, 'jun': 54.0, 'jul': 60.0, 'aug': 60.0, 'sep': 51.0, 'oct': 41.0, 'nov': 32.0, 'dec': 24.0}</td>
+          <td>{'jan': 10.0, 'feb': 9.0, 'mar': 10.0, 'apr': 8.0, 'may': 7.0, 'jun': 5.0, 'jul': 2.0, 'aug': 2.0, 'sep': 3.0, 'oct': 5.0, 'nov': 10.0, 'dec': 11.0}</td>
+        </tr>
+        <tr>
+          <td>Illinois</td>
+          <td>springfield</td>
+          <td>127,631</td>
+          <td>231.50</td>
+          <td>38</td>
+          <td>65886</td>
+          <td>338</td>
+          <td>1,557,873</td>
+          <td>12.20%</td>
+          <td>{'jan': 35.0, 'feb': 40.0, 'mar': 52.0, 'apr': 65.0, 'may': 75.0, 'jun': 83.0, 'jul': 86.0, 'aug': 85.0, 'sep': 79.0, 'oct': 66.0, 'nov': 52.0, 'dec': 38.0}</td>
+          <td>{'jan': 19.0, 'feb': 23.0, 'mar': 32.0, 'apr': 42.0, 'may': 53.0, 'jun': 62.0, 'jul': 65.0, 'aug': 64.0, 'sep': 55.0, 'oct': 44.0, 'nov': 34.0, 'dec': 22.0}</td>
+          <td>{'jan': 1.82, 'feb': 1.81, 'mar': 2.63, 'apr': 3.51, 'may': 4.24, 'jun': 4.46, 'jul': 3.94, 'aug': 3.24, 'sep': 2.9, 'oct': 3.15, 'nov': 3.21, 'dec': 2.52}</td>
+        </tr>
+        <tr>
+          <td>Indiana</td>
+          <td>indianapolis</td>
+          <td>66,653</td>
+          <td>181.70</td>
+          <td>37</td>
+          <td>563</td>
+          <td>29,777</td>
+          <td>867,996</td>
+          <td>13.02%</td>
+          <td>{'jan': 36.0, 'feb': 40.0, 'mar': 52.0, 'apr': 63.0, 'may': 73.0, 'jun': 82.0, 'jul': 85.0, 'aug': 84.0, 'sep': 78.0, 'oct': 65.0, 'nov': 52.0, 'dec': 39.0}</td>
+          <td>{'jan': 20.0, 'feb': 24.0, 'mar': 33.0, 'apr': 43.0, 'may': 53.0, 'jun': 62.0, 'jul': 66.0, 'aug': 64.0, 'sep': 56.0, 'oct': 45.0, 'nov': 35.0, 'dec': 24.0}</td>
+          <td>{'jan': 12.0, 'feb': 10.0, 'mar': 11.0, 'apr': 12.0, 'may': 13.0, 'jun': 11.0, 'jul': 10.0, 'aug': 8.0, 'sep': 8.0, 'oct': 8.0, 'nov': 10.0, 'dec': 12.0}</td>
+        </tr>
+        <tr>
+          <td>Iowa</td>
+          <td>des_moines</td>
+          <td>31,398</td>
+          <td>54.81</td>
+          <td>38</td>
+          <td>523</td>
+          <td>32,176</td>
+          <td>348,122</td>
+          <td>11.09%</td>
+          <td>{'jan': 31.0, 'feb': 36.0, 'mar': 49.0, 'apr': 62.0, 'may': 72.0, 'jun': 82.0, 'jul': 86.0, 'aug': 84.0, 'sep': 76.0, 'oct': 63.0, 'nov': 48.0, 'dec': 34.0}</td>
+          <td>{'jan': 14.0, 'feb': 19.0, 'mar': 30.0, 'apr': 41.0, 'may': 52.0, 'jun': 62.0, 'jul': 67.0, 'aug': 65.0, 'sep': 55.0, 'oct': 43.0, 'nov': 31.0, 'dec': 18.0}</td>
+          <td>{'jan': 7.0, 'feb': 7.0, 'mar': 9.0, 'apr': 11.0, 'may': 12.0, 'jun': 11.0, 'jul': 10.0, 'aug': 9.0, 'sep': 8.0, 'oct': 8.0, 'nov': 8.0, 'dec': 8.0}</td>
+        </tr>
+        <tr>
+          <td>Kansas</td>
+          <td>topeka</td>
+          <td>29,652</td>
+          <td>35.09</td>
+          <td>36</td>
+          <td>59597</td>
+          <td>31,814</td>
+          <td>337,739</td>
+          <td>11.60%</td>
+          <td>{'jan': 40.0, 'feb': 45.0, 'mar': 56.0, 'apr': 67.0, 'may': 76.0, 'jun': 85.0, 'jul': 89.0, 'aug': 89.0, 'sep': 80.0, 'oct': 68.0, 'nov': 55.0, 'dec': 42.0}</td>
+          <td>{'jan': 20.0, 'feb': 24.0, 'mar': 33.0, 'apr': 44.0, 'may': 54.0, 'jun': 64.0, 'jul': 68.0, 'aug': 66.0, 'sep': 56.0, 'oct': 45.0, 'nov': 33.0, 'dec': 22.0}</td>
+          <td>{'jan': 0.86, 'feb': 1.32, 'mar': 2.49, 'apr': 3.53, 'may': 4.91, 'jun': 5.4, 'jul': 3.82, 'aug': 4.24, 'sep': 3.66, 'oct': 3.03, 'nov': 1.85, 'dec': 1.35}</td>
+        </tr>
+        <tr>
+          <td>Kentucky</td>
+          <td>frankfort</td>
+          <td>44,452</td>
+          <td>110.00</td>
+          <td>38</td>
+          <td>589</td>
+          <td>28,178</td>
+          <td>74</td>
+          <td>16.79%</td>
+          <td>{'jan': 40.0, 'feb': 45.0, 'mar': 55.0, 'apr': 66.0, 'may': 75.0, 'jun': 83.0, 'jul': 87.0, 'aug': 86.0, 'sep': 79.0, 'oct': 68.0, 'nov': 55.0, 'dec': 44.0}</td>
+          <td>{'jan': 21.0, 'feb': 23.0, 'mar': 31.0, 'apr': 39.0, 'may': 49.0, 'jun': 59.0, 'jul': 63.0, 'aug': 62.0, 'sep': 55.0, 'oct': 42.0, 'nov': 34.0, 'dec': 26.0}</td>
+          <td>{'jan': 3.15, 'feb': 3.07, 'mar': 4.06, 'apr': 3.66, 'may': 4.61, 'jun': 4.41, 'jul': 4.17, 'aug': 3.58, 'sep': 3.15, 'oct': 2.68, 'nov': 3.35, 'dec': 3.7}</td>
+        </tr>
+        <tr>
+          <td>Louisiana</td>
+          <td>baton_rouge</td>
+          <td>4,664,362</td>
+          <td>105.00</td>
+          <td>36</td>
+          <td>49469</td>
+          <td>27,923</td>
+          <td>871,467</td>
+          <td>18.68%</td>
+          <td>{'jan': 62.0, 'feb': 66.0, 'mar': 73.0, 'apr': 79.0, 'may': 86.0, 'jun': 91.0, 'jul': 92.0, 'aug': 92.0, 'sep': 89.0, 'oct': 81.0, 'nov': 72.0, 'dec': 64.0}</td>
+          <td>{'jan': 41.0, 'feb': 44.0, 'mar': 50.0, 'apr': 57.0, 'may': 65.0, 'jun': 71.0, 'jul': 74.0, 'aug': 73.0, 'sep': 69.0, 'oct': 58.0, 'nov': 49.0, 'dec': 43.0}</td>
+          <td>{'jan': 5.72, 'feb': 5.04, 'mar': 4.41, 'apr': 4.46, 'may': 4.89, 'jun': 6.41, 'jul': 4.96, 'aug': 5.82, 'sep': 4.54, 'oct': 4.7, 'nov': 4.1, 'dec': 5.6}</td>
+        </tr>
+        <tr>
+          <td>Maine</td>
+          <td>augusta</td>
+          <td>1,335,492</td>
+          <td>43.04</td>
+          <td>44</td>
+          <td>57918</td>
+          <td>32,637</td>
+          <td>153,131</td>
+          <td>11.47%</td>
+          <td>{'jan': 28.0, 'feb': 32.0, 'mar': 40.0, 'apr': 53.0, 'may': 65.0, 'jun': 74.0, 'jul': 79.0, 'aug': 78.0, 'sep': 70.0, 'oct': 57.0, 'nov': 45.0, 'dec': 33.0}</td>
+          <td>{'jan': 11.0, 'feb': 15.0, 'mar': 23.0, 'apr': 35.0, 'may': 45.0, 'jun': 54.0, 'jul': 60.0, 'aug': 58.0, 'sep': 51.0, 'oct': 40.0, 'nov': 31.0, 'dec': 19.0}</td>
+          <td>{'jan': 2.61, 'feb': 2.43, 'mar': 3.37, 'apr': 3.79, 'may': 3.69, 'jun': 3.56, 'jul': 3.42, 'aug': 3.31, 'sep': 3.74, 'oct': 4.36, 'nov': 4.36, 'dec': 3.24}</td>
+        </tr>
+        <tr>
+          <td>Maryland</td>
+          <td>annapolis</td>
+          <td>18,848</td>
+          <td>596.30</td>
+          <td>38</td>
+          <td>845</td>
+          <td>42,122</td>
+          <td>539,991</td>
+          <td>8.97%</td>
+          <td>{'jan': 44.0, 'feb': 48.0, 'mar': 57.0, 'apr': 68.0, 'may': 77.0, 'jun': 86.0, 'jul': 89.0, 'aug': 87.0, 'sep': 81.0, 'oct': 69.0, 'nov': 59.0, 'dec': 48.0}</td>
+          <td>{'jan': 29.0, 'feb': 31.0, 'mar': 38.0, 'apr': 47.0, 'may': 57.0, 'jun': 67.0, 'jul': 71.0, 'aug': 71.0, 'sep': 64.0, 'oct': 52.0, 'nov': 42.0, 'dec': 33.0}</td>
+          <td>{'jan': 3.32, 'feb': 2.94, 'mar': 4.53, 'apr': 3.66, 'may': 4.2, 'jun': 4.17, 'jul': 4.56, 'aug': 3.88, 'sep': 4.76, 'oct': 3.89, 'nov': 3.8, 'dec': 3.56}</td>
+        </tr>
+        <tr>
+          <td>Massachusetts</td>
+          <td>boston</td>
+          <td>68,553</td>
+          <td>840.20</td>
+          <td>39</td>
+          <td>81215</td>
+          <td>43,761</td>
+          <td>6,962</td>
+          <td>9.94%</td>
+          <td>{'jan': 36.0, 'feb': 39.0, 'mar': 45.0, 'apr': 56.0, 'may': 66.0, 'jun': 76.0, 'jul': 81.0, 'aug': 80.0, 'sep': 72.0, 'oct': 61.0, 'nov': 51.0, 'dec': 41.0}</td>
+          <td>{'jan': 22.0, 'feb': 25.0, 'mar': 31.0, 'apr': 41.0, 'may': 50.0, 'jun': 60.0, 'jul': 65.0, 'aug': 65.0, 'sep': 57.0, 'oct': 47.0, 'nov': 38.0, 'dec': 28.0}</td>
+          <td>{'jan': 11.0, 'feb': 9.0, 'mar': 11.0, 'apr': 11.0, 'may': 12.0, 'jun': 10.0, 'jul': 9.0, 'aug': 9.0, 'sep': 8.0, 'oct': 9.0, 'nov': 10.0, 'dec': 11.0}</td>
+        </tr>
+        <tr>
+          <td>Michigan</td>
+          <td>lansing</td>
+          <td>9,965,265</td>
+          <td>173.90</td>
+          <td>39</td>
+          <td>57144</td>
+          <td>31,713</td>
+          <td>1,398,527</td>
+          <td>14.03%</td>
+          <td>{'jan': 30.0, 'feb': 33.0, 'mar': 44.0, 'apr': 58.0, 'may': 69.0, 'jun': 78.0, 'jul': 82.0, 'aug': 80.0, 'sep': 73.0, 'oct': 60.0, 'nov': 47.0, 'dec': 34.0}</td>
+          <td>{'jan': 17.0, 'feb': 19.0, 'mar': 26.0, 'apr': 37.0, 'may': 47.0, 'jun': 57.0, 'jul': 61.0, 'aug': 59.0, 'sep': 51.0, 'oct': 41.0, 'nov': 32.0, 'dec': 22.0}</td>
+          <td>{'jan': 1.65, 'feb': 1.47, 'mar': 2.06, 'apr': 3.03, 'may': 3.36, 'jun': 3.45, 'jul': 2.84, 'aug': 3.23, 'sep': 3.5, 'oct': 2.53, 'nov': 2.78, 'dec': 1.87}</td>
+        </tr>
+        <tr>
+          <td>Minnesota</td>
+          <td>saint_paul</td>
+          <td>5,563,378</td>
+          <td>67.14</td>
+          <td>38</td>
+          <td>716</td>
+          <td>37,625</td>
+          <td>5,265</td>
+          <td>9.46%</td>
+          <td>{'jan': 26.0, 'feb': 31.0, 'mar': 43.0, 'apr': 58.0, 'may': 71.0, 'jun': 80.0, 'jul': 85.0, 'aug': 82.0, 'sep': 73.0, 'oct': 59.0, 'nov': 42.0, 'dec': 29.0}</td>
+          <td>{'jan': 7.0, 'feb': 12.0, 'mar': 24.0, 'apr': 38.0, 'may': 50.0, 'jun': 59.0, 'jul': 64.0, 'aug': 62.0, 'sep': 53.0, 'oct': 41.0, 'nov': 27.0, 'dec': 13.0}</td>
+          <td>{'jan': 0.77, 'feb': 0.67, 'mar': 1.55, 'apr': 2.88, 'may': 3.7, 'jun': 4.2, 'jul': 4.4, 'aug': 4.78, 'sep': 3.27, 'oct': 2.91, 'nov': 1.82, 'dec': 1.09}</td>
+        </tr>
+        <tr>
+          <td>Mississippi</td>
+          <td>jackson</td>
+          <td>2,984,418</td>
+          <td>63.50</td>
+          <td>37</td>
+          <td>481</td>
+          <td>24,369</td>
+          <td>585,786</td>
+          <td>19.63%</td>
+          <td>{'jan': 56.0, 'feb': 60.0, 'mar': 69.0, 'apr': 76.0, 'may': 83.0, 'jun': 89.0, 'jul': 92.0, 'aug': 92.0, 'sep': 87.0, 'oct': 77.0, 'nov': 67.0, 'dec': 58.0}</td>
+          <td>{'jan': 35.0, 'feb': 38.0, 'mar': 45.0, 'apr': 52.0, 'may': 62.0, 'jun': 69.0, 'jul': 72.0, 'aug': 71.0, 'sep': 65.0, 'oct': 53.0, 'nov': 44.0, 'dec': 37.0}</td>
+          <td>{'jan': 4.97, 'feb': 4.76, 'mar': 5.04, 'apr': 4.96, 'may': 4.38, 'jun': 4.12, 'jul': 4.81, 'aug': 4.24, 'sep': 3.03, 'oct': 3.92, 'nov': 4.76, 'dec': 5.15}</td>
+        </tr>
+        <tr>
+          <td>Missouri</td>
+          <td>jefferson_city</td>
+          <td>649</td>
+          <td>87.26</td>
+          <td>38</td>
+          <td>55461</td>
+          <td>8</td>
+          <td>8,045</td>
+          <td>13.27%</td>
+          <td>{'jan': 40.0, 'feb': 45.0, 'mar': 56.0, 'apr': 67.0, 'may': 75.0, 'jun': 83.0, 'jul': 88.0, 'aug': 88.0, 'sep': 80.0, 'oct': 69.0, 'nov': 56.0, 'dec': 43.0}</td>
+          <td>{'jan': 21.0, 'feb': 25.0, 'mar': 33.0, 'apr': 44.0, 'may': 54.0, 'jun': 64.0, 'jul': 68.0, 'aug': 66.0, 'sep': 57.0, 'oct': 45.0, 'nov': 35.0, 'dec': 24.0}</td>
+          <td>{'jan': 1.9, 'feb': 2.31, 'mar': 3.0, 'apr': 4.14, 'may': 5.17, 'jun': 4.39, 'jul': 4.31, 'aug': 4.04, 'sep': 4.16, 'oct': 3.34, 'nov': 3.61, 'dec': 2.73}</td>
+        </tr>
+        <tr>
+          <td>Montana</td>
+          <td>helena</td>
+          <td>649</td>
+          <td>6.86</td>
+          <td>39</td>
+          <td>549</td>
+          <td>31,151</td>
+          <td>1,345</td>
+          <td>12.81%</td>
+          <td>{'jan': 33.0, 'feb': 39.0, 'mar': 48.0, 'apr': 58.0, 'may': 67.0, 'jun': 76.0, 'jul': 86.0, 'aug': 85.0, 'sep': 73.0, 'oct': 59.0, 'nov': 43.0, 'dec': 32.0}</td>
+          <td>{'jan': 13.0, 'feb': 17.0, 'mar': 24.0, 'apr': 32.0, 'may': 41.0, 'jun': 49.0, 'jul': 54.0, 'aug': 52.0, 'sep': 43.0, 'oct': 33.0, 'nov': 22.0, 'dec': 12.0}</td>
+          <td>{'jan': 0.36, 'feb': 0.3, 'mar': 0.59, 'apr': 0.98, 'may': 1.87, 'jun': 2.06, 'jul': 1.19, 'aug': 1.2, 'sep': 1.1, 'oct': 0.68, 'nov': 0.49, 'dec': 0.4}</td>
+        </tr>
+        <tr>
+          <td>Nebraska</td>
+          <td>lincoln</td>
+          <td>1,914,571</td>
+          <td>23.97</td>
+          <td>36</td>
+          <td>61439</td>
+          <td>322</td>
+          <td>6,579</td>
+          <td>10.79%</td>
+          <td>{'jan': 35.0, 'feb': 40.0, 'mar': 52.0, 'apr': 64.0, 'may': 74.0, 'jun': 84.0, 'jul': 89.0, 'aug': 87.0, 'sep': 79.0, 'oct': 66.0, 'nov': 50.0, 'dec': 37.0}</td>
+          <td>{'jan': 14.0, 'feb': 18.0, 'mar': 28.0, 'apr': 39.0, 'may': 51.0, 'jun': 61.0, 'jul': 66.0, 'aug': 64.0, 'sep': 53.0, 'oct': 41.0, 'nov': 28.0, 'dec': 16.0}</td>
+          <td>{'jan': 0.64, 'feb': 0.77, 'mar': 1.93, 'apr': 2.71, 'may': 4.29, 'jun': 4.35, 'jul': 3.4, 'aug': 3.49, 'sep': 3.02, 'oct': 1.97, 'nov': 1.43, 'dec': 0.95}</td>
+        </tr>
+        <tr>
+          <td>Nevada</td>
+          <td>carson_city</td>
+          <td>2,972,382</td>
+          <td>24.80</td>
+          <td>38</td>
+          <td>365</td>
+          <td>31,557</td>
+          <td>3,846</td>
+          <td>12.94%</td>
+          <td>{'jan': 45.0, 'feb': 50.0, 'mar': 57.0, 'apr': 63.0, 'may': 71.0, 'jun': 81.0, 'jul': 90.0, 'aug': 88.0, 'sep': 80.0, 'oct': 68.0, 'nov': 54.0, 'dec': 45.0}</td>
+          <td>{'jan': 22.0, 'feb': 25.0, 'mar': 30.0, 'apr': 34.0, 'may': 41.0, 'jun': 47.0, 'jul': 52.0, 'aug': 51.0, 'sep': 43.0, 'oct': 35.0, 'nov': 27.0, 'dec': 22.0}</td>
+          <td>{'jan': 1.56, 'feb': 1.57, 'mar': 1.12, 'apr': 0.45, 'may': 0.44, 'jun': 0.44, 'jul': 0.18, 'aug': 0.23, 'sep': 0.4, 'oct': 0.69, 'nov': 1.24, 'dec': 1.35}</td>
+        </tr>
+        <tr>
+          <td>New Hampshire</td>
+          <td>concord</td>
+          <td>1,348,124</td>
+          <td>147.00</td>
+          <td>42</td>
+          <td>76768</td>
+          <td>3</td>
+          <td>98,682</td>
+          <td>7.32%</td>
+          <td>{'jan': 31.0, 'feb': 35.0, 'mar': 44.0, 'apr': 57.0, 'may': 69.0, 'jun': 77.0, 'jul': 82.0, 'aug': 81.0, 'sep': 73.0, 'oct': 60.0, 'nov': 48.0, 'dec': 36.0}</td>
+          <td>{'jan': 10.0, 'feb': 14.0, 'mar': 22.0, 'apr': 33.0, 'may': 43.0, 'jun': 53.0, 'jul': 58.0, 'aug': 56.0, 'sep': 47.0, 'oct': 36.0, 'nov': 28.0, 'dec': 17.0}</td>
+          <td>{'jan': 2.7, 'feb': 2.62, 'mar': 3.27, 'apr': 3.41, 'may': 3.66, 'jun': 3.69, 'jul': 3.74, 'aug': 3.18, 'sep': 3.38, 'oct': 4.04, 'nov': 3.72, 'dec': 3.2}</td>
+        </tr>
+        <tr>
+          <td>New Jersey</td>
+          <td>trenton</td>
+          <td>88,783</td>
+          <td>1189.00</td>
+          <td>39</td>
+          <td>82545</td>
+          <td>42,745</td>
+          <td>8,681</td>
+          <td>9.79%</td>
+          <td>{'jan': 35.0, 'feb': 41.0, 'mar': 52.0, 'apr': 64.0, 'may': 74.0, 'jun': 83.0, 'jul': 88.0, 'aug': 87.0, 'sep': 78.0, 'oct': 66.0, 'nov': 51.0, 'dec': 38.0}</td>
+          <td>{'jan': 16.0, 'feb': 20.0, 'mar': 30.0, 'apr': 40.0, 'may': 52.0, 'jun': 62.0, 'jul': 66.0, 'aug': 64.0, 'sep': 54.0, 'oct': 43.0, 'nov': 31.0, 'dec': 20.0}</td>
+          <td>{'jan': 1.03, 'feb': 1.7, 'mar': 2.66, 'apr': 3.93, 'may': 5.88, 'jun': 5.03, 'jul': 4.34, 'aug': 4.01, 'sep': 4.04, 'oct': 3.18, 'nov': 2.31, 'dec': 1.78}</td>
+        </tr>
+        <tr>
+          <td>New Mexico</td>
+          <td>santa_fe</td>
+          <td>92,454</td>
+          <td>17.16</td>
+          <td>37</td>
+          <td>49754</td>
+          <td>272</td>
+          <td>3,965</td>
+          <td>18.74%</td>
+          <td>{'jan': 44.0, 'feb': 48.0, 'mar': 56.0, 'apr': 65.0, 'may': 74.0, 'jun': 83.0, 'jul': 86.0, 'aug': 83.0, 'sep': 78.0, 'oct': 67.0, 'nov': 53.0, 'dec': 43.0}</td>
+          <td>{'jan': 17.0, 'feb': 22.0, 'mar': 26.0, 'apr': 32.0, 'may': 41.0, 'jun': 49.0, 'jul': 54.0, 'aug': 53.0, 'sep': 47.0, 'oct': 35.0, 'nov': 25.0, 'dec': 17.0}</td>
+          <td>{'jan': 0.6, 'feb': 0.53, 'mar': 0.94, 'apr': 0.77, 'may': 0.94, 'jun': 1.29, 'jul': 2.33, 'aug': 2.23, 'sep': 1.54, 'oct': 1.33, 'nov': 0.85, 'dec': 0.83}</td>
+        </tr>
+        <tr>
+          <td>New York</td>
+          <td>raleigh</td>
+          <td>264,876</td>
+          <td>412.30</td>
+          <td>38</td>
+          <td>542</td>
+          <td>783</td>
+          <td>1,467,591</td>
+          <td>14.30%</td>
+          <td>{'jan': 51.0, 'feb': 56.0, 'mar': 64.0, 'apr': 73.0, 'may': 79.0, 'jun': 86.0, 'jul': 89.0, 'aug': 87.0, 'sep': 82.0, 'oct': 72.0, 'nov': 63.0, 'dec': 54.0}</td>
+          <td>{'jan': 32.0, 'feb': 34.0, 'mar': 41.0, 'apr': 48.0, 'may': 57.0, 'jun': 65.0, 'jul': 69.0, 'aug': 68.0, 'sep': 62.0, 'oct': 50.0, 'nov': 42.0, 'dec': 35.0}</td>
+          <td>{'jan': 4.45, 'feb': 3.58, 'mar': 4.45, 'apr': 2.99, 'may': 3.94, 'jun': 4.06, 'jul': 4.49, 'aug': 4.21, 'sep': 4.41, 'oct': 3.58, 'nov': 3.19, 'dec': 3.23}</td>
+        </tr>
+        <tr>
+          <td>North Carolina</td>
+          <td>bismarck</td>
+          <td>756,717</td>
+          <td>198.20</td>
+          <td>35</td>
+          <td>64894</td>
+          <td>362</td>
+          <td>78,198</td>
+          <td>10.33%</td>
+          <td>{'jan': 23.0, 'feb': 28.0, 'mar': 40.0, 'apr': 57.0, 'may': 68.0, 'jun': 77.0, 'jul': 85.0, 'aug': 83.0, 'sep': 72.0, 'oct': 58.0, 'nov': 40.0, 'dec': 26.0}</td>
+          <td>{'jan': 2.0, 'feb': 8.0, 'mar': 19.0, 'apr': 31.0, 'may': 43.0, 'jun': 52.0, 'jul': 57.0, 'aug': 56.0, 'sep': 45.0, 'oct': 32.0, 'nov': 19.0, 'dec': 6.0}</td>
+          <td>{'jan': 0.43, 'feb': 0.51, 'mar': 0.87, 'apr': 1.26, 'may': 2.4, 'jun': 3.17, 'jul': 2.89, 'aug': 2.28, 'sep': 1.59, 'oct': 1.25, 'nov': 0.71, 'dec': 0.49}</td>
+        </tr>
+        <tr>
+          <td>North Dakota</td>
+          <td>albany</td>
+          <td>19,572,319</td>
+          <td>9.92</td>
+          <td>38</td>
+          <td>68486</td>
+          <td>39,326</td>
+          <td>2,681,277</td>
+          <td>13.70%</td>
+          <td>{'jan': 31.0, 'feb': 35.0, 'mar': 44.0, 'apr': 58.0, 'may': 69.0, 'jun': 78.0, 'jul': 82.0, 'aug': 80.0, 'sep': 72.0, 'oct': 60.0, 'nov': 48.0, 'dec': 36.0}</td>
+          <td>{'jan': 15.0, 'feb': 17.0, 'mar': 26.0, 'apr': 37.0, 'may': 47.0, 'jun': 56.0, 'jul': 61.0, 'aug': 60.0, 'sep': 52.0, 'oct': 40.0, 'nov': 31.0, 'dec': 21.0}</td>
+          <td>{'jan': 2.59, 'feb': 2.2, 'mar': 3.21, 'apr': 3.17, 'may': 3.61, 'jun': 3.79, 'jul': 4.12, 'aug': 3.46, 'sep': 3.3, 'oct': 3.68, 'nov': 3.29, 'dec': 2.93}</td>
+        </tr>
+        <tr>
+          <td>Ohio</td>
+          <td>columbus</td>
+          <td>11,655,397</td>
+          <td>281.90</td>
+          <td>39</td>
+          <td>562</td>
+          <td>31,552</td>
+          <td>1,588,343</td>
+          <td>13.63%</td>
+          <td>{'jan': 36.0, 'feb': 40.0, 'mar': 52.0, 'apr': 63.0, 'may': 73.0, 'jun': 82.0, 'jul': 85.0, 'aug': 84.0, 'sep': 77.0, 'oct': 65.0, 'nov': 52.0, 'dec': 41.0}</td>
+          <td>{'jan': 20.0, 'feb': 24.0, 'mar': 32.0, 'apr': 41.0, 'may': 52.0, 'jun': 61.0, 'jul': 65.0, 'aug': 63.0, 'sep': 56.0, 'oct': 44.0, 'nov': 35.0, 'dec': 26.0}</td>
+          <td>{'jan': 13.0, 'feb': 11.0, 'mar': 13.0, 'apr': 13.0, 'may': 12.0, 'jun': 10.0, 'jul': 10.0, 'aug': 10.0, 'sep': 8.0, 'oct': 9.0, 'nov': 11.0, 'dec': 13.0}</td>
+        </tr>
+        <tr>
+          <td>Oklahoma</td>
+          <td>oklahoma_city</td>
+          <td>39,328</td>
+          <td>55.22</td>
+          <td>36</td>
+          <td>52919</td>
+          <td>28,422</td>
+          <td>598,373</td>
+          <td>15.21%</td>
+          <td>{'jan': 50.0, 'feb': 55.0, 'mar': 63.0, 'apr': 72.0, 'may': 80.0, 'jun': 88.0, 'jul': 94.0, 'aug': 93.0, 'sep': 85.0, 'oct': 73.0, 'nov': 62.0, 'dec': 51.0}</td>
+          <td>{'jan': 29.0, 'feb': 33.0, 'mar': 41.0, 'apr': 50.0, 'may': 60.0, 'jun': 68.0, 'jul': 72.0, 'aug': 71.0, 'sep': 63.0, 'oct': 52.0, 'nov': 40.0, 'dec': 31.0}</td>
+          <td>{'jan': 1.39, 'feb': 1.58, 'mar': 3.06, 'apr': 3.07, 'may': 4.65, 'jun': 4.93, 'jul': 2.93, 'aug': 3.28, 'sep': 4.06, 'oct': 3.71, 'nov': 1.98, 'dec': 1.88}</td>
+        </tr>
+        <tr>
+          <td>Oregon</td>
+          <td>salem</td>
+          <td>41,293</td>
+          <td>40.33</td>
+          <td>39</td>
+          <td>62818</td>
+          <td>33,763</td>
+          <td>533,527</td>
+          <td>12.92%</td>
+          <td>{'jan': 48.0, 'feb': 52.0, 'mar': 56.0, 'apr': 61.0, 'may': 68.0, 'jun': 74.0, 'jul': 82.0, 'aug': 82.0, 'sep': 77.0, 'oct': 64.0, 'nov': 53.0, 'dec': 46.0}</td>
+          <td>{'jan': 35.0, 'feb': 35.0, 'mar': 37.0, 'apr': 40.0, 'may': 45.0, 'jun': 49.0, 'jul': 53.0, 'aug': 53.0, 'sep': 48.0, 'oct': 42.0, 'nov': 38.0, 'dec': 34.0}</td>
+          <td>{'jan': 5.96, 'feb': 4.56, 'mar': 3.99, 'apr': 2.81, 'may': 2.22, 'jun': 1.55, 'jul': 0.46, 'aug': 0.45, 'sep': 1.28, 'oct': 3.03, 'nov': 6.5, 'dec': 6.86}</td>
+        </tr>
+        <tr>
+          <td>Pennsylvania</td>
+          <td>harrisburg</td>
+          <td>127,915</td>
+          <td>284.30</td>
+          <td>40</td>
+          <td>61744</td>
+          <td>34,352</td>
+          <td>1,539,183</td>
+          <td>12.03%</td>
+          <td>{'jan': 38.0, 'feb': 41.0, 'mar': 51.0, 'apr': 63.0, 'may': 73.0, 'jun': 81.0, 'jul': 86.0, 'aug': 84.0, 'sep': 76.0, 'oct': 64.0, 'nov': 53.0, 'dec': 42.0}</td>
+          <td>{'jan': 23.0, 'feb': 25.0, 'mar': 33.0, 'apr': 42.0, 'may': 51.0, 'jun': 61.0, 'jul': 66.0, 'aug': 64.0, 'sep': 57.0, 'oct': 45.0, 'nov': 36.0, 'dec': 28.0}</td>
+          <td>{'jan': 3.19, 'feb': 2.87, 'mar': 3.58, 'apr': 3.31, 'may': 4.61, 'jun': 3.98, 'jul': 3.23, 'aug': 3.23, 'sep': 3.66, 'oct': 3.07, 'nov': 3.54, 'dec': 3.23}</td>
+        </tr>
+        <tr>
+          <td>Rhode Island</td>
+          <td>providence</td>
+          <td>57,231</td>
+          <td>1006.00</td>
+          <td>39</td>
+          <td>67167</td>
+          <td>36,121</td>
+          <td>125,826</td>
+          <td>11.90%</td>
+          <td>{'jan': 37.0, 'feb': 40.0, 'mar': 48.0, 'apr': 59.0, 'may': 68.0, 'jun': 78.0, 'jul': 83.0, 'aug': 81.0, 'sep': 74.0, 'oct': 63.0, 'nov': 53.0, 'dec': 42.0}</td>
+          <td>{'jan': 21.0, 'feb': 24.0, 'mar': 30.0, 'apr': 40.0, 'may': 49.0, 'jun': 58.0, 'jul': 64.0, 'aug': 63.0, 'sep': 55.0, 'oct': 44.0, 'nov': 36.0, 'dec': 26.0}</td>
+          <td>{'jan': 11.0, 'feb': 9.0, 'mar': 11.0, 'apr': 11.0, 'may': 12.0, 'jun': 10.0, 'jul': 9.0, 'aug': 9.0, 'sep': 8.0, 'oct': 9.0, 'nov': 10.0, 'dec': 11.0}</td>
+        </tr>
+        <tr>
+          <td>South Carolina</td>
+          <td>columbia</td>
+          <td>6</td>
+          <td>155.40</td>
+          <td>39</td>
+          <td>53199</td>
+          <td>29,426</td>
+          <td>7,416</td>
+          <td>14.77%</td>
+          <td>{'jan': 58.0, 'feb': 63.0, 'mar': 71.0, 'apr': 80.0, 'may': 87.0, 'jun': 92.0, 'jul': 95.0, 'aug': 93.0, 'sep': 88.0, 'oct': 78.0, 'nov': 69.0, 'dec': 60.0}</td>
+          <td>{'jan': 37.0, 'feb': 41.0, 'mar': 47.0, 'apr': 54.0, 'may': 62.0, 'jun': 70.0, 'jul': 73.0, 'aug': 72.0, 'sep': 67.0, 'oct': 55.0, 'nov': 47.0, 'dec': 39.0}</td>
+          <td>{'jan': 3.85, 'feb': 3.77, 'mar': 4.21, 'apr': 2.66, 'may': 3.0, 'jun': 5.29, 'jul': 5.44, 'aug': 4.86, 'sep': 3.6, 'oct': 3.13, 'nov': 3.09, 'dec': 3.4}</td>
+        </tr>
+        <tr>
+          <td>South Dakota</td>
+          <td>pierre</td>
+          <td>8,638</td>
+          <td>98.07</td>
+          <td>37</td>
+          <td>58275</td>
+          <td>773</td>
+          <td>1,553</td>
+          <td>12.70%</td>
+          <td>{'jan': 30.0, 'feb': 35.0, 'mar': 45.0, 'apr': 60.0, 'may': 70.0, 'jun': 80.0, 'jul': 89.0, 'aug': 87.0, 'sep': 76.0, 'oct': 61.0, 'nov': 44.0, 'dec': 31.0}</td>
+          <td>{'jan': 10.0, 'feb': 14.0, 'mar': 24.0, 'apr': 34.0, 'may': 46.0, 'jun': 55.0, 'jul': 62.0, 'aug': 60.0, 'sep': 49.0, 'oct': 36.0, 'nov': 23.0, 'dec': 12.0}</td>
+          <td>{'jan': 0.42, 'feb': 0.59, 'mar': 1.21, 'apr': 1.81, 'may': 3.15, 'jun': 3.57, 'jul': 2.61, 'aug': 1.8, 'sep': 1.87, 'oct': 1.65, 'nov': 0.7, 'dec': 0.55}</td>
+        </tr>
+        <tr>
+          <td>Tennessee</td>
+          <td>nashville</td>
+          <td>69,356</td>
+          <td>88.08</td>
+          <td>38</td>
+          <td>533</td>
+          <td>29,859</td>
+          <td>9,969</td>
+          <td>14.86%</td>
+          <td>{'jan': 47.0, 'feb': 52.0, 'mar': 61.0, 'apr': 71.0, 'may': 78.0, 'jun': 86.0, 'jul': 89.0, 'aug': 89.0, 'sep': 82.0, 'oct': 72.0, 'nov': 60.0, 'dec': 49.0}</td>
+          <td>{'jan': 28.0, 'feb': 32.0, 'mar': 39.0, 'apr': 47.0, 'may': 57.0, 'jun': 65.0, 'jul': 69.0, 'aug': 68.0, 'sep': 61.0, 'oct': 49.0, 'nov': 39.0, 'dec': 31.0}</td>
+          <td>{'jan': 12.0, 'feb': 11.0, 'mar': 12.0, 'apr': 11.0, 'may': 11.0, 'jun': 9.0, 'jul': 10.0, 'aug': 9.0, 'sep': 7.0, 'oct': 7.0, 'nov': 9.0, 'dec': 11.0}</td>
+        </tr>
+        <tr>
+          <td>Texas</td>
+          <td>austin</td>
+          <td>282,856</td>
+          <td>98.07</td>
+          <td>34</td>
+          <td>61874</td>
+          <td>31,277</td>
+          <td>72,194</td>
+          <td>14.41%</td>
+          <td>{'jan': 62.0, 'feb': 65.0, 'mar': 72.0, 'apr': 80.0, 'may': 87.0, 'jun': 92.0, 'jul': 96.0, 'aug': 97.0, 'sep': 91.0, 'oct': 82.0, 'nov': 71.0, 'dec': 63.0}</td>
+          <td>{'jan': 42.0, 'feb': 45.0, 'mar': 51.0, 'apr': 59.0, 'may': 67.0, 'jun': 72.0, 'jul': 74.0, 'aug': 75.0, 'sep': 69.0, 'oct': 61.0, 'nov': 51.0, 'dec': 42.0}</td>
+          <td>{'jan': 2.22, 'feb': 2.02, 'mar': 2.76, 'apr': 2.09, 'may': 4.36, 'jun': 4.33, 'jul': 1.88, 'aug': 2.35, 'sep': 2.99, 'oct': 3.88, 'nov': 2.96, 'dec': 2.4}</td>
+        </tr>
+        <tr>
+          <td>Utah</td>
+          <td>salt_lake_city</td>
+          <td>96,848</td>
+          <td>34.30</td>
+          <td>30</td>
+          <td>71621</td>
+          <td>29,775</td>
+          <td>298,537</td>
+          <td>9.64%</td>
+          <td>{'jan': 38.0, 'feb': 44.0, 'mar': 53.0, 'apr': 61.0, 'may': 71.0, 'jun': 82.0, 'jul': 90.0, 'aug': 89.0, 'sep': 78.0, 'oct': 65.0, 'nov': 50.0, 'dec': 40.0}</td>
+          <td>{'jan': 26.0, 'feb': 31.0, 'mar': 38.0, 'apr': 43.0, 'may': 52.0, 'jun': 61.0, 'jul': 69.0, 'aug': 67.0, 'sep': 58.0, 'oct': 46.0, 'nov': 36.0, 'dec': 27.0}</td>
+          <td>{'jan': 10.0, 'feb': 9.0, 'mar': 10.0, 'apr': 9.0, 'may': 8.0, 'jun': 5.0, 'jul': 4.0, 'aug': 6.0, 'sep': 5.0, 'oct': 6.0, 'nov': 7.0, 'dec': 9.0}</td>
+        </tr>
+        <tr>
+          <td>Vermont</td>
+          <td>montpelier</td>
+          <td>624,313</td>
+          <td>67.73</td>
+          <td>42</td>
+          <td>61973</td>
+          <td>34,577</td>
+          <td>65,652</td>
+          <td>10.52%</td>
+          <td>{'jan': 26.0, 'feb': 30.0, 'mar': 39.0, 'apr': 53.0, 'may': 66.0, 'jun': 74.0, 'jul': 78.0, 'aug': 77.0, 'sep': 69.0, 'oct': 56.0, 'nov': 44.0, 'dec': 32.0}</td>
+          <td>{'jan': 7.0, 'feb': 10.0, 'mar': 19.0, 'apr': 31.0, 'may': 42.0, 'jun': 51.0, 'jul': 56.0, 'aug': 54.0, 'sep': 46.0, 'oct': 35.0, 'nov': 27.0, 'dec': 14.0}</td>
+          <td>{'jan': 2.45, 'feb': 2.04, 'mar': 2.39, 'apr': 2.66, 'may': 3.37, 'jun': 3.8, 'jul': 4.08, 'aug': 4.01, 'sep': 3.12, 'oct': 3.44, 'nov': 3.17, 'dec': 2.74}</td>
+        </tr>
+        <tr>
+          <td>Virginia</td>
+          <td>richmond</td>
+          <td>8,454,463</td>
+          <td>204.50</td>
+          <td>38</td>
+          <td>74222</td>
+          <td>39,278</td>
+          <td>865,691</td>
+          <td>10.24%</td>
+          <td>{'jan': 47.0, 'feb': 51.0, 'mar': 60.0, 'apr': 70.0, 'may': 78.0, 'jun': 86.0, 'jul': 90.0, 'aug': 88.0, 'sep': 81.0, 'oct': 71.0, 'nov': 61.0, 'dec': 51.0}</td>
+          <td>{'jan': 28.0, 'feb': 31.0, 'mar': 37.0, 'apr': 46.0, 'may': 55.0, 'jun': 65.0, 'jul': 69.0, 'aug': 67.0, 'sep': 60.0, 'oct': 48.0, 'nov': 39.0, 'dec': 31.0}</td>
+          <td>{'jan': 9.0, 'feb': 8.0, 'mar': 10.0, 'apr': 10.0, 'may': 10.0, 'jun': 10.0, 'jul': 11.0, 'aug': 9.0, 'sep': 8.0, 'oct': 7.0, 'nov': 8.0, 'dec': 9.0}</td>
+        </tr>
+        <tr>
+          <td>Washington</td>
+          <td>olympia</td>
+          <td>747</td>
+          <td>102.60</td>
+          <td>37</td>
+          <td>73775</td>
+          <td>38,915</td>
+          <td>785,244</td>
+          <td>10.61%</td>
+          <td>{'jan': 46.0, 'feb': 49.0, 'mar': 54.0, 'apr': 59.0, 'may': 65.0, 'jun': 71.0, 'jul': 77.0, 'aug': 78.0, 'sep': 72.0, 'oct': 60.0, 'nov': 50.0, 'dec': 44.0}</td>
+          <td>{'jan': 34.0, 'feb': 33.0, 'mar': 35.0, 'apr': 38.0, 'may': 43.0, 'jun': 48.0, 'jul': 51.0, 'aug': 51.0, 'sep': 46.0, 'oct': 40.0, 'nov': 36.0, 'dec': 33.0}</td>
+          <td>{'jan': 7.84, 'feb': 5.27, 'mar': 5.29, 'apr': 3.54, 'may': 2.33, 'jun': 1.76, 'jul': 0.63, 'aug': 0.94, 'sep': 1.71, 'oct': 4.6, 'nov': 8.63, 'dec': 7.46}</td>
+        </tr>
+        <tr>
+          <td>West Virginia</td>
+          <td>charleston</td>
+          <td>18,175</td>
+          <td>77.06</td>
+          <td>42</td>
+          <td>46711</td>
+          <td>264</td>
+          <td>3,044</td>
+          <td>17.06%</td>
+          <td>{'jan': 42.0, 'feb': 47.0, 'mar': 56.0, 'apr': 68.0, 'may': 75.0, 'jun': 82.0, 'jul': 85.0, 'aug': 84.0, 'sep': 78.0, 'oct': 68.0, 'nov': 57.0, 'dec': 46.0}</td>
+          <td>{'jan': 26.0, 'feb': 29.0, 'mar': 35.0, 'apr': 44.0, 'may': 53.0, 'jun': 62.0, 'jul': 66.0, 'aug': 65.0, 'sep': 57.0, 'oct': 45.0, 'nov': 37.0, 'dec': 29.0}</td>
+          <td>{'jan': 3.0, 'feb': 3.19, 'mar': 3.91, 'apr': 3.24, 'may': 4.8, 'jun': 4.29, 'jul': 4.94, 'aug': 3.74, 'sep': 3.25, 'oct': 2.67, 'nov': 3.73, 'dec': 3.27}</td>
+        </tr>
+        <tr>
+          <td>Wisconsin</td>
+          <td>madison</td>
+          <td>57,716</td>
+          <td>105.20</td>
+          <td>39</td>
+          <td>61747</td>
+          <td>33,375</td>
+          <td>6,391</td>
+          <td>11.04%</td>
+          <td>{'jan': 26.0, 'feb': 31.0, 'mar': 43.0, 'apr': 57.0, 'may': 68.0, 'jun': 78.0, 'jul': 82.0, 'aug': 79.0, 'sep': 72.0, 'oct': 59.0, 'nov': 44.0, 'dec': 30.0}</td>
+          <td>{'jan': 11.0, 'feb': 15.0, 'mar': 25.0, 'apr': 36.0, 'may': 46.0, 'jun': 56.0, 'jul': 61.0, 'aug': 59.0, 'sep': 50.0, 'oct': 39.0, 'nov': 28.0, 'dec': 16.0}</td>
+          <td>{'jan': 1.23, 'feb': 1.45, 'mar': 2.2, 'apr': 3.4, 'may': 3.55, 'jun': 4.54, 'jul': 4.18, 'aug': 4.27, 'sep': 3.13, 'oct': 2.4, 'nov': 2.39, 'dec': 1.74}</td>
+        </tr>
+        <tr>
+          <td>Wyoming</td>
+          <td>cheyenne</td>
+          <td>5,824</td>
+          <td>5.85</td>
+          <td>37</td>
+          <td>649</td>
+          <td>33,366</td>
+          <td>62,257</td>
+          <td>10.72%</td>
+          <td>{'jan': 40.0, 'feb': 40.0, 'mar': 47.0, 'apr': 55.0, 'may': 65.0, 'jun': 75.0, 'jul': 83.0, 'aug': 81.0, 'sep': 72.0, 'oct': 59.0, 'nov': 47.0, 'dec': 38.0}</td>
+          <td>{'jan': 18.0, 'feb': 19.0, 'mar': 24.0, 'apr': 31.0, 'may': 40.0, 'jun': 49.0, 'jul': 56.0, 'aug': 54.0, 'sep': 45.0, 'oct': 34.0, 'nov': 24.0, 'dec': 17.0}</td>
+          <td>{'jan': 4.0, 'feb': 6.0, 'mar': 8.0, 'apr': 10.0, 'may': 12.0, 'jun': 11.0, 'jul': 10.0, 'aug': 11.0, 'sep': 8.0, 'oct': 7.0, 'nov': 6.0, 'dec': 6.0}</td>
+        </tr>
+      </tbody>
+    </table>
+</body>
