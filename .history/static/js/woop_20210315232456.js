@@ -22,7 +22,7 @@ function buildMap() {
         map.addTo(myMap);
 
         let geojson;
-        fetch('/map')
+        fetch('/master')
         .then(function (response) {
             return response.json();
         }).then(function (text) {
@@ -117,9 +117,12 @@ function buildMap() {
         };
         legend.addTo(myMap);
         
+        // DELETE OR COMMENT OUT BELOW ITEMS IF WE CANNOT GET THEM TO WORK //
+        
 
+     
     });   
-
+        
     });
     };
 buildMap();

@@ -22,7 +22,7 @@ function buildMap() {
         map.addTo(myMap);
 
         let geojson;
-        fetch('/map')
+        fetch('/state')
         .then(function (response) {
             return response.json();
         }).then(function (text) {
@@ -119,7 +119,7 @@ function buildMap() {
         
 
     });   
-
+        
     });
     };
 buildMap();

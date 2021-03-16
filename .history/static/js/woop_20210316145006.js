@@ -27,7 +27,7 @@ function buildMap() {
             return response.json();
         }).then(function (text) {
         var data2 = text;
-        geojson = L.choropleth(data, {
+        geojson = L.choropleth(data2, {
                 // Define what  property in the features to use
         valueProperty: "density",
 
@@ -119,7 +119,7 @@ function buildMap() {
         
 
     });   
-
+        
     });
     };
 buildMap();

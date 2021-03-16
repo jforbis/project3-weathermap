@@ -15,7 +15,7 @@ let myMap = L.map("map", {
 map.addTo(myMap);
 
 const data2 = "static/data/masterdata.geojson";
-d3.json(data, d =>{
+d3.json(data2, d =>{
     // let pop = feature.properties.Population;
     // console.log(pop);
     L.geoJson(d, {
