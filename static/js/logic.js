@@ -1,88 +1,87 @@
-// This will be the base file for our choropleth maps
-// Creating map object
-// let myMap = L.map("map", {
-//   center: [39.0997, -94.5786], //KC, MO//
-//   zoom: 8
-// });
+const url = "../static/statesData.geojson";
+console.log("squid");
 
-// // Adding tile layer
-// L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-//   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-//   tileSize: 512,
-//   maxZoom: 18,
-//   zoomOffset: -1,
-//   id: "mapbox/streets-v11",
-//   accessToken: API_KEY
-// }).addTo(myMap);
-
-// let geojsonLayer = new L.GeoJSON.AJAX("masterdata.geojson");       
-// geojsonLayer.addTo(map);
-
-jQuery.getjson("../../resources/data/masterdata.geojson", function(data) {
-  L.geoJson(data).addTo(myMap);
-  console.log(data);
+const Map = L.map("map", {
+    center: [1, 10],
+    zoom: 3
 });
 
-let geojson;
-
-// Grab data with d3
-d3.json(geoData, function(data) {
-  console.log(geoData);
-
-  // Create a new choropleth layer
-  geojson = L.choropleth(geoData, {
-    // Define what property in the features to use
-    valueProperty: "Black_Pct",
-
-    // Set color scale
-    scale: ["white", "blue"],
-
-    // Number of breaks in step range
-    steps: 10,
-
-    // q for quartile, e for equidistant, k for k-means
-    mode: "q",
-    style: {
-      // Border color
-      color: "black",
-      weight: 1,
-      fillOpacity: 0.8
-    },
-
-    // Binding a pop-up to each layer
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup("Zip Code: " + feature.properties.ZIP + "<br>Percentage of African Americans:<br>" +
-        feature.properties.Black_Pct + "%");
+function chooseColor(depth) {
+    if (depth < 10) {
+        return "yellow";
     }
-  }).addTo(myMap);
+    else if (depth >= 10 && depth < 30) {
+        return "green";
+    }
+    
+    else if (depth >= 30 && depth < 50) {
+        return "orange";
+    }
+    
+    else if (depth >= 50 && depth < 70) {
+        return "red";
+    }
+    
+    else if (depth >= 70 && depth < 90) {
+        return "magenta";
+    }
 
-  // Set up the legend
-  let legend = L.control({ position: "bottomright" });
-  legend.onAdd = function() {
-    let div = L.DomUtil.create("div", "info legend");
-    let limits = geojson.options.limits;
-    console.log(limits);
-    let colors = geojson.options.colors;
-    let labels = [];
+    else {
+        return "purple";
+    }
+    }
 
-    // Add min & max
-    let legendInfo = "<h1>Percentage of African Americans</h1>" +
-      "<div class=\"labels\">" +
-        "<div class=\"min\">" + limits[0] + "</div>" +
-        "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-      "</div>";
+function chooseSize(mag) {
+    return mag * 3;
+    };
+    
 
-    div.innerHTML = legendInfo;
-
-    limits.forEach(function(limit, index) {
-      labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
-    });
-
-    div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    return div;
-  };
-
-  // Adding legend to the map
-  legend.addTo(myMap);
-
+d3.json(url, function(d) {
+    L.geoJson(d, {
+        pointToLayer: function(feature, latlng) {
+            return new L.CircleMarker(latlng, {
+            radius: chooseSize(feature.properties.mag),
+            color: chooseColor(feature.geometry.coordinates[2])
+            });
+        },
+        onEachFeature: function (feature, layer) {
+            layer.bindPopup('<h1>Magnitude: '+feature.properties.mag+'<br>Location: '+feature.properties.place+'</h1>');
+            }
+    }).addTo(Map);
 });
+
+L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    tileSize: 450,
+    maxZoom: 10,
+    zoomOffset: -1,      
+    id: "streets-v11",
+    accessToken: API_KEY
+    }).addTo(Map);
+
+
+var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function() {
+const div = L.DomUtil.create("div", "info legend");
+
+const grades = [0, 1, 2, 3, 4, 5];
+const colors = [
+    "yellow",
+    "green",
+    "orange",
+    "red",
+    "magenta",
+    "purple"
+];
+
+for (let i = 0; i < grades.length; i++) {
+    div.innerHTML +=
+    "<i style='background: " + colors[i] + "'></i> " +
+    grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
+}
+return div;
+};
+
+legend.addTo(map);
+
