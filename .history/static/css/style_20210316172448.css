@@ -111,8 +111,7 @@ hr {
   color: #9f9b9b;
   background-color: white;
   margin-top: -140px;
-  margin-left: 40px;
-  text-align: center;
+  margin-left: 40px
 }
 ​
 .card-img-top {
@@ -165,6 +164,6 @@ tr {
   text-align: center;
 }
 
-li {
+p {
   text-align: center;
 }

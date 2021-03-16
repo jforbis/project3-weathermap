@@ -100,8 +100,7 @@ hr {
   margin-left: 40px;
   margin-top: top;
   border-color: #9f9b9b;
-  vertical-align: text-top;
-  text-align: center
+  vertical-align: text-top
 }
 ​
 .card-text {
@@ -111,8 +110,7 @@ hr {
   color: #9f9b9b;
   background-color: white;
   margin-top: -140px;
-  margin-left: 40px;
-  text-align: center;
+  margin-left: 40px
 }
 ​
 .card-img-top {
@@ -162,9 +160,5 @@ h2 {
 table tr th.sticky-top { 	top: 70px; }
 
 tr {
-  text-align: center;
-}
-
-li {
   text-align: center;
 }
