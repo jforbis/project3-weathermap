@@ -75,7 +75,7 @@ d3.json(data2, d =>{
         let intensity = [0,"581,024","5,899,078","6,480,102","32,803,394","39,283,497"];
         let colors = ["#FEF001", "#FFCE03", "#FD9A01", "#FD6104", "#FF2C05", "#F00505"];
 
-        let legendInfo = "<h4><u>POPULATION<BR>LEGEND:</u></h4>"
+        let legendInfo = "<h4><u>LEGEND:</u></h4>"
         div.innerHTML = legendInfo 
         for (let i = 0; i < colors.length; i++) {
             div.innerHTML +=
@@ -86,6 +86,34 @@ d3.json(data2, d =>{
 
     };
     legend.addTo(myMap);
+
+// Set up the legend
+let legend = L.control({ position: "topright" });
+legend.onAdd = function() {
+let div = L.DomUtil.create("div", "info legend");
+let limits = geojson.options.limits;
+let colors = geojson.options.colors;
+let labels = [];
+
+    // Add min & max
+    var legendInfo = "<h1>Median Income</h1>" +
+        "<div class=\"labels\">" +
+        "<div class=\"min\">" + limits[0] + "</div>" +
+        "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
+        "</div>";
+
+    div.innerHTML = legendInfo;
+
+    limits.forEach(function(limit, index) {
+        labels.push("<li style=\"background-color: " + colors[index] + "\"></li>");
+    });
+
+    div.innerHTML += "<ul>" + labels.join("") + "</ul>";
+    return div;
+};
+
+// Adding legend to the map
+legend.addTo(myMap);
 });
 
 const data = "static/data/statesData.geojson";
@@ -112,26 +140,4 @@ d3.json(data, d => {
     fillOpacity: 0.8
     },
 }).addTo(myMap);
-
-let legend2 = L.control({
-    position: "topright"
-});
-
-legend2.onAdd = function() {
-    let div = L.DomUtil.create("div", "legend");
-
-    let intensity = [0,"100","250","500","5,000","10,000"];
-    let colors = ["#FFFFFF", "#D3D3D3", "#C0C0C0", "#A9A9A9", "#8B898C", "#808080"];
-
-    let legendInfo = "<h4><u>CHLOROPLETH<BR>LEGEND:</u></h4>"
-    div.innerHTML = legendInfo 
-    for (let i = 0; i < colors.length; i++) {
-        div.innerHTML +=
-        "<i style='background: " + colors[i] + "'></i> " +
-        intensity[i] + (intensity[i + 1] ? " - " + intensity[i + 1] + " Pop. Density <br>" : "+ Pop. Density");
-    }
-    return div;
-
-};
-legend2.addTo(myMap);
 });
