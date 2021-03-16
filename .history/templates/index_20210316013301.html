@@ -23,7 +23,7 @@ z-index: 1071;">
         <div class="nav navbar-nav navbar-right">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/data">All Data</a>
+                    <a class="nav-link" href="data.html">All Data</a>
                 </li>
             </ul>
         </div>
@@ -58,7 +58,7 @@ z-index: 1071;">
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="/state">Population</a>
-                <a class="dropdown-item" href="/maps">Precipitation</a>
+                <a class="dropdown-item" href="#">Precipitation</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/data">Data</a>
             </div>
@@ -116,25 +116,18 @@ z-index: 1071;">
                                         <!--Todo: add images of each map and specify their specific routes so they are clickable-->
                                     <td class="card-title" colspan=2>MAP VISUALS:</td>
                                     </tr>
-                                    <tr>
+                                                                        <tr>
                                         <td>Precipitation
                                             <a href="/maps">
                                                 <img src="{{ url_for('static',filename='../static/images/choropleth_pop.jpg') }}" class="card-img-top" alt="...">
                                         </a>
                                         </td>
-                                    </tr>
-                                    <tr>
                                         <td>Population
                                             <a href="/state">
                                                 <img src="{{ url_for('static',filename='../static/images/choropleth_pop.jpg') }}" class="card-img-top" alt="...">
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr><td style="color: white">#This was hard#</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-
                                 </table>
                             </div>
                     </div>

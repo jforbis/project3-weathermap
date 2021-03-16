@@ -47,7 +47,7 @@ a:hover {
   color: white;
   width: 300px;
   border: 15px #3d3c3c;
-  border-style: outset;
+  border-style: outset
 }
 ​
 .title2 {
@@ -140,12 +140,12 @@ hr {
   padding: 20px;
   margin: 0;
   background: blue;
-  /* background-image: url("{{ url_for('static',filename='images/intro_image2.jpg') }}"); */
+  background-image: href= "{{ url_for('static',filename='images/intro_image2.jpg') }}";
   background-attachment: fixed;
   background-position: bottom center;
   background-size: cover;
 }
 ​
-h2 {
+p {
   color: white
 }

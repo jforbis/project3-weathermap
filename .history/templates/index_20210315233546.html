@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Interactive Weather & Precipitation Mapper</title>
 <!--Bootstrap style sheet-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!--Our style sheet-->
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+<!--link to style sheet-->
+<!-- <link rel="stylesheet" type="text/css" href="../static/styles/style.css"> -->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='/css/style.css') }}">
 </head>
 <!--Top Nav Bar-->
-<nav class="navbar-expand-lg navbar-light bg-light nav-color navbar nav" 
-style="position: sticky;
-top: 0;
-z-index: 1071;">
-    <a class="navbar-brand" href="/">Project Summary</a>
+<nav class="navbar-expand-lg navbar-light bg-light nav-color navbar nav">
+    <a class="navbar-brand" href="index.html">Project Summary</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,8 +19,21 @@ z-index: 1071;">
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <div class="nav navbar-nav navbar-right">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Interactive Maps</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Route#1">High Temps</a>
+                        <a class="dropdown-item" href="Route#2">Low Temps</a>
+                        <a class="dropdown-item" href="Route#3">Precipitation</a>
+                        <a class="dropdown-item" href="Route#4">Population</a>
+                    </ul>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/data">All Data</a>
+                    <a class="nav-link" href="comparisons.html">Map Comparisons</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="data.html">All Data</a>
                 </li>
             </ul>
         </div>
@@ -31,38 +41,10 @@ z-index: 1071;">
 </nav>
 <!-- First div is a container for the title and scraper button -->
 <div class="container">
-    <div class="hero text-center" style="position: center;
-    height: 500px;
-    padding: 30px;
-    margin: 0;
-    background: blue;
-    background-image: url('../static/images/intro_image2.jpg');
-    background-attachment: fixed;
-    background-position: bottom center;
-    background-size: cover;">
-        <h1><span class="title" style="background-color: black;
-            color: white;
-            width: 300px;
-            border: 15px #3d3c3c;
-            margin-bottom: 50px;
-            border-style: outset">Interactive Weather & Precipitation Mapper</span></h1>
-        <p style="padding: 40px"><span class="title2" style="background-color: black;
-            color: white;
-            width: 300px;
-            border: 8px #3d3c3c;
-            margin-top: 50px;
-            border-style: outset">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/state">Population</a>
-                <a class="dropdown-item" href="/maps">Precipitation</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/data">Data</a>
-            </div>
-        </div>
+    <div class="hero text-center" style="background-image: url('static/images/intro_image2.jpg')">
+        <h1><span class="title">Interactive Weather & Precipitation Mapper</span></h1>
+        <p><span class="title2">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
+        <p><a class="button" href="/maps" role="button">Scrape New Data</a></p>
     </div>
 </div>
 <body>
@@ -71,7 +53,7 @@ z-index: 1071;">
         <table>
             <tr>
                 <td style="vertical-align:top">
-                    <div class="card" style="width: 30rem;">
+                    <div class="card" style="width: 40rem;">
                         <!-- Update Image Here If We Even Want One -->
                         <div class="card-body">
                         <div class="card-title">PROJECT PURPOSE:</div>
@@ -104,12 +86,12 @@ z-index: 1071;">
                             Extra info here about the project.
                         </p>
                         <!--Todo: add url to data page-->
-                        <a href="/data" class="btn btn-primary">All Data</a>
+                        <a href="data.html" class="btn btn-primary">All Data</a>
                         </div>
                     </div>
                 </td>
                 <td style="vertical-align:top">
-                    <div class="card" style="margin-left: 20px;width: 40rem;">
+                    <div class="card" style="width: 40rem;">
                             <div class="card-body">
                                 <table>
                                     <tr>
@@ -117,24 +99,29 @@ z-index: 1071;">
                                     <td class="card-title" colspan=2>MAP VISUALS:</td>
                                     </tr>
                                     <tr>
-                                        <td>Precipitation
-                                            <a href="/maps">
-                                                <img src="{{ url_for('static',filename='../static/images/choropleth_pop.jpg') }}" class="card-img-top" alt="...">
-                                        </a>
+                                        <td>High Temps
+                                            <a href="visualizations/maxtemp.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
+                                            </a>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Population
-                                            <a href="/state">
-                                                <img src="{{ url_for('static',filename='../static/images/choropleth_pop.jpg') }}" class="card-img-top" alt="...">
+                                        <td>Low Temps
+                                            <a href="visualizations/humidity.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr><td style="color: white">#This was hard#</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-
+                                    <tr>
+                                        <td>Precipitation
+                                            <a href="visualizations/cloudiness.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
+                                        </a>
+                                        </td>
+                                        <td>Population
+                                            <a href="visualizations/windspeed.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                     </div>
@@ -142,7 +129,4 @@ z-index: 1071;">
             </tr>
         </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

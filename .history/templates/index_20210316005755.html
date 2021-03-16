@@ -22,8 +22,25 @@ z-index: 1071;">
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <div class="nav navbar-nav navbar-right">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Interactive Maps</a>
+                    <ul class="dropdown-menu" style="display: none;
+                    position: absolute;
+                    background-color: #f9f9f9;
+                    min-width: 160px;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    padding: 12px 16px;
+                    z-index: 1;"
+                    aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Route#1">High Temps</a>
+                        <a class="dropdown-item" href="Route#2">Low Temps</a>
+                        <a class="dropdown-item" href="Route#3">Precipitation</a>
+                        <a class="dropdown-item" href="Route#4">Population</a>
+                    </ul>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/data">All Data</a>
+                    <a class="nav-link" href="data.html">All Data</a>
                 </li>
             </ul>
         </div>
@@ -52,15 +69,15 @@ z-index: 1071;">
             border: 8px #3d3c3c;
             margin-top: 50px;
             border-style: outset">J.Forbis, S.Imperiale, J.Stoddart, S.Sweeny</span></p>
+        <p><a class="button" href="/maps" role="button">Scrape New Data</a></p>
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown button
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="/state">Population</a>
-                <a class="dropdown-item" href="/maps">Precipitation</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/data">Data</a>
+                <a class="dropdown-item" href="#">Precipitation</a>
+                <a class="dropdown-item" href="#">Data</a>
             </div>
         </div>
     </div>
@@ -71,7 +88,7 @@ z-index: 1071;">
         <table>
             <tr>
                 <td style="vertical-align:top">
-                    <div class="card" style="width: 30rem;">
+                    <div class="card" style="width: 40rem;">
                         <!-- Update Image Here If We Even Want One -->
                         <div class="card-body">
                         <div class="card-title">PROJECT PURPOSE:</div>
@@ -104,12 +121,12 @@ z-index: 1071;">
                             Extra info here about the project.
                         </p>
                         <!--Todo: add url to data page-->
-                        <a href="/data" class="btn btn-primary">All Data</a>
+                        <a href="data.html" class="btn btn-primary">All Data</a>
                         </div>
                     </div>
                 </td>
                 <td style="vertical-align:top">
-                    <div class="card" style="margin-left: 20px;width: 40rem;">
+                    <div class="card" style="width: 40rem;">
                             <div class="card-body">
                                 <table>
                                     <tr>
@@ -117,24 +134,29 @@ z-index: 1071;">
                                     <td class="card-title" colspan=2>MAP VISUALS:</td>
                                     </tr>
                                     <tr>
-                                        <td>Precipitation
-                                            <a href="/maps">
-                                                <img src="{{ url_for('static',filename='../static/images/choropleth_pop.jpg') }}" class="card-img-top" alt="...">
-                                        </a>
+                                        <td>High Temps
+                                            <a href="visualizations/maxtemp.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
+                                            </a>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Population
-                                            <a href="/state">
-                                                <img src="{{ url_for('static',filename='../static/images/choropleth_pop.jpg') }}" class="card-img-top" alt="...">
+                                        <td>Low Temps
+                                            <a href="visualizations/humidity.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr><td style="color: white">#This was hard#</td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-                                    <tr><td></td></tr>
-
+                                    <tr>
+                                        <td>Precipitation
+                                            <a href="visualizations/cloudiness.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
+                                        </a>
+                                        </td>
+                                        <td>Population
+                                            <a href="visualizations/windspeed.html">
+                                                <img src="{{ url_for('static',filename='../static/images/choropleth-example.png') }}" class="card-img-top" alt="...">
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                     </div>
