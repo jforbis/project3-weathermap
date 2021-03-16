@@ -160,5 +160,5 @@ h2 {
 table tr th.sticky-top { 	top: 70px; }
 
 tr {
-  text-align: center;
+  "text-align: center;"
 }
