@@ -75,7 +75,7 @@ d3.json(data2, d =>{
         let intensity = [0,"581,024","5,899,078","6,480,102","32,803,394","39,283,497"];
         let colors = ["#FEF001", "#FFCE03", "#FD9A01", "#FD6104", "#FF2C05", "#F00505"];
 
-        let legendInfo = "<h4><u>POPULATION<BR>LEGEND:</u></h4>"
+        let legendInfo = "<h4><u>LEGEND:</u></h4>"
         div.innerHTML = legendInfo 
         for (let i = 0; i < colors.length; i++) {
             div.innerHTML +=
