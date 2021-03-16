@@ -131,7 +131,7 @@ hr {
 .navbar-expand-lg {
   position: sticky;
   top: 0;
-  z-index: 0;
+  z-index: 1071;
 }
 ​
 .hero {
@@ -152,6 +152,5 @@ h2 {
 
 .table-dark thead th {
   position: "sticky";
-  top: 0;
-  z-index:1
+  top: 0
 }

@@ -21,43 +21,43 @@ function buildMap() {
 
         map.addTo(myMap);
 
-        let geojson;
-        fetch('/map')
-        .then(function (response) {
-            return response.json();
-        }).then(function (text) {
-        var data2 = text;
-        geojson = L.choropleth(data, {
-                // Define what  property in the features to use
-        valueProperty: "density",
+        // let geojson;
+        // fetch('/map')
+        // .then(function (response) {
+        //     return response.json();
+        // }).then(function (text) {
+        // var data2 = text;
+        // geojson = L.choropleth(data, {
+        //         // Define what  property in the features to use
+        // valueProperty: "density",
 
-        // Set color scale
-        scale: ["white", "#8B898C"],
+        // // Set color scale
+        // scale: ["white", "#8B898C"],
 
-        // Number of breaks in step range
-        steps: 10,
+        // // Number of breaks in step range
+        // steps: 10,
 
-        // q for quartile, e for equidistant, k for k-means
-        mode: "q",
-        style: {
-        // Border color
-        color: "#8B898C",
-        weight: 2,
-        fillOpacity: 0.8
-        },
-        }).addTo(myMap);
-            // let pop = feature.properties.Population;
-            // console.log(pop);
-        L.geoJson(data2, {
-            pointToLayer: function(feature, latlng) {
-                return L.circleMarker(latlng);
-            },
-            style: chooseStyle,
+        // // q for quartile, e for equidistant, k for k-means
+        // mode: "q",
+        // style: {
+        // // Border color
+        // color: "#8B898C",
+        // weight: 2,
+        // fillOpacity: 0.8
+        // },
+        // }).addTo(myMap);
+        //     // let pop = feature.properties.Population;
+        //     // console.log(pop);
+        // L.geoJson(data2, {
+        //     pointToLayer: function(feature, latlng) {
+        //         return L.circleMarker(latlng);
+        //     },
+        //     style: chooseStyle,
 
-            onEachFeature: function(feature, layer) {
-                layer.bindPopup("<div class=header><b><u>State Name</u></b>: " + feature.properties.state + "</div><b>Capital: </b>" + feature.properties.Capital + "<br> <b>State Population: </b>" + feature.properties.Population + "<br> <b>Median Age: </b>" + feature.properties["Median Age"] + "<br> <b>Household Income: </b>" + feature.properties["Household Income"] + "<br> <b>Poverty Count: </b>" + feature.properties["Poverty Count"] + "<br> <b>Poverty Rate %: </b>" + feature.properties["Poverty Rate"]);
-            }
-        }).addTo(myMap);
+        //     onEachFeature: function(feature, layer) {
+        //         layer.bindPopup("<div class=header><b><u>State Name</u></b>: " + feature.properties.state + "</div><b>Capital: </b>" + feature.properties.Capital + "<br> <b>State Population: </b>" + feature.properties.Population + "<br> <b>Median Age: </b>" + feature.properties["Median Age"] + "<br> <b>Household Income: </b>" + feature.properties["Household Income"] + "<br> <b>Poverty Count: </b>" + feature.properties["Poverty Count"] + "<br> <b>Poverty Rate %: </b>" + feature.properties["Poverty Rate"]);
+        //     }
+        // }).addTo(myMap);
 
         function chooseStyle(feature) {
             return {
@@ -119,7 +119,7 @@ function buildMap() {
         
 
     });   
-
+        
     });
     };
 buildMap();

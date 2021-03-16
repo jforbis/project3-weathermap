@@ -54,14 +54,14 @@ def testfn():
         return message
 
 # Route for population map
-# @app.route('/????', methods=['GET'])
-# def testfn():
-#     # GET request
-#     data = list(col.find())
-#     if request.method == 'GET':
-#         data = JSONEncoder().encode(data)
-#         message = json.load(open("./static/data/statesData.geojson"))
-#         return message
+@app.route('/????', methods=['GET'])
+def testfn():
+    # GET request
+    data = list(col.find())
+    if request.method == 'GET':
+        data = JSONEncoder().encode(data)
+        message = json.load(open("./static/data/statesData.geojson"))
+        return message
 
 @app.route('/master', methods=['GET'])
 def testfn2():
